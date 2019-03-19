@@ -1,5 +1,12 @@
 # Deploy
 
+>설정파일 구성이 완료되면 배포 쉘 스크립트 파일(.sh)을 만들어서 간단히 배포 할 수 있음.<br>
+>sudo systemctl | grep nginx => 서비스 상태 확인<br>
+>sudo systemctl start nginx(sudo service nginx start) => 서비스 시작<br>
+>ps -ef | grep nginx => 현재 수행되고 있는 프로세스 상태 확인<br>
+>netstat -nap => 열려있는 포트 확인
+
+
 ## 기본구조
 - Web Client <-> Nginx(Web Server) <-> Socket <-> uWSGI <-> Django(Application Server)
 - 웹서버와 uWSGI 사이에 port를 사용하지 않고 UNIX socket을 사용하면, overhead가 적어서 더 좋은 성능을 낼 수 있다.
@@ -109,4 +116,6 @@
     - sudo service nginx reload == nr(# alias설정)
 12. 소스 파일이 변경되었을 때 프로젝트명.ini파일의 touch-reload 설정으로<br> 프로젝트명.reload파일이 touch되면 감지하고 uwsgi를 리로드한다.
     - vi 프로젝트명.reload
-    - 소스 파일이 변경되면 touch 프로젝트명.reload    
+    - 소스 파일이 변경되면 touch 프로젝트명.reload
+
+
