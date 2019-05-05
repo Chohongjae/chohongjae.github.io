@@ -148,6 +148,8 @@ response.write(u'\ufeff'.encode('utf8'))
 	 
     - 위의 경우 처럼 for else 문을 사용한다면 flag 같은 변수를 사용하지 않아도 되서 코드가 훨씬 깔끔해 진다.
       <br>else의 들여쓰기는 for와 일치해야 합니다.
+      
+- GENERATOR와 AIOHTTP AIOHTTP, ABSTRAT CLASS 등등 인스턴스변수 클래스변수등등정리
 
 
 
