@@ -59,11 +59,12 @@
             
 - from urllib.parse import urlparse, urljoin 을 사용하면 url 파싱할 수 있음.
 
-- csv파일을 리턴할때 response = HttpResponse(content_type="text/csv; charset=utf-8")
-response['Content-Disposition'] = 'attachment; filename= products_list.csv'
-response.write(u'\ufeff'.encode('utf8'))
-<br>u'\ufeff'.encode('utf8')을 미리 넣어줘서 이파일이 'utf-8 with bom'이라는 방식으로 인코딩 되어있다는 것을<br>
-명시적으로 알려주면 한글이 정상적으로 보이게 csv를 받을 수 있다.
+- csv파일을 리턴할때 
+
+        response.write(u'\ufeff'.encode('utf8'))
+        
+    - u'\ufeff'.encode('utf8')을 미리 넣어줘서 이파일이 'utf-8 with bom'이라는 방식으로 인코딩 되어있다는 것을<br>
+    명시적으로 알려주면 한글이 정상적으로 보이게 csv를 받을 수 있다.
 
 - filter의 사용
     - filter란 무엇인가를 걸러낸다는 뜻으로, filter 함수도 동일한 의미를 가진다. <br>
@@ -151,5 +152,7 @@ response.write(u'\ufeff'.encode('utf8'))
       
 - GENERATOR와 AIOHTTP AIOHTTP, ABSTRAT CLASS 등등 인스턴스변수 클래스변수등등정리
 
+- 인스턴스 변수 & 클래스 변수
+- 인스턴스 메소드 & 클래스 메소드 & 스태틱 메소드
 
 
