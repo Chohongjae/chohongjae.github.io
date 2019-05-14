@@ -16,9 +16,10 @@
         application/x-www-form-urlencoded , text/plain , multipart/form-data등이 있다.<br>
         따라서 POST 방식으로 데이터를 보낼때는 위와 같이 컨텐츠 타입을 꼭 명시해줘야한다.<br>
         보통 작성하지 않는 경우는 1번의 컨텐츠 타입으로 셋팅된다.<br>
-        1번의 컨텐츠 타입은, GET방식과 마찬가지로 BODY에 key 와 value 쌍으로 데이터를 넣는다. 똑같이 구분자 &를 쓴다.<br>
+        1번의 컨텐츠 타입은, GET방식과 마찬가지로 BODY에 key 와 value 쌍으로 데이터를 넣는다. <br>
+        똑같이 구분자 &를 쓴다.<br>
         2번의 컨텐츠 타입은, BODY에 단순 txt를 넣는다.<br>
-        3번의 컨텐츠 타입은, 파일전송을 할때 많이 쓰는데 BODY의 데이터를 바이너리 데이터로 넣는다는걸 알려준다.<br>
+        3번의 컨텐츠 타입은, 파일전송을 할때 많이 쓰는데 BODY의 데이터를 바이너리 데이터로 넣는다는걸 <br>알려준다.
         즉, application/x-www-form-urlencoded인 경우 request.POST로 처리한다.
     -     You're confusing form-encoded and JSON data here. <br>
           request.POST['foo'] is for form-encoded data.<br> 
@@ -68,7 +69,8 @@ path는 정규표현식을 사용하지 않음. 횟수를 한정하고 싶으면
     - 즉, 'helloworld:detail' 이런식으로 사용하려면 'appname:url_name' 다 설정해줘야한다!
     - 프로젝트 url안에는 namespace, 앱 폴더 url안에는 name을 사용했는데, namespace는 앱을 구분해주는 기능이라고 생각하면 되고,<br> 
       앱 url안에 name은 각 url의 이름을 붙이는 기능이라고 생각하면된다.<br>
-      이 기능을 사용해서 나중에 TDD 개발과 내부에서 라우팅시에 reverse('namespace:name')으로 url로 라우팅 가능하다.<br>
+      이 기능을 사용해서 나중에 TDD 개발과 내부에서 라우팅시에 reverse('namespace:name')으로<br>
+      url로 라우팅 가능하다.<br>
       앱에대한 alias url에대한 alias라 생각하면 될 듯하다.
       
             No. It is just that django gives you the option to name your views in case 
