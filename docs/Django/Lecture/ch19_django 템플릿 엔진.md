@@ -23,24 +23,24 @@
     실제 django/shortcuts.py 의 소스
 
 
-    from django.http import HttpResponse
-    from django.template import loader
+        from django.http import HttpResponse
+        from django.template import loader
 
-    def render(request,template_name,context=None,content_type=None,status=None,using=None):
-        content = loader.render_to_string(template_name,context,request,using=using)
-        return HttpResponse(content,content_type,status)
+        def render(request,template_name,context=None,content_type=None,status=None,using=None):
+            content = loader.render_to_string(template_name,context,request,using=using)
+            return HttpResponse(content,content_type,status)
 
-    context 는 딕셔너리 형태, 보통 context까지만 인자를 지정하는데
-    content_type은 어떤 content_type을 가질것인지, 미지정하면 text/html의 content_type
-    status는 상태코드 생략하면 200, using은 어떠한 템플릿 엔진을 사용할것인지
-    지정하지 않으면 settings.py에 지정된 템플릿엔진이 사용됨.
-    주로 앞에 3개만 지정한다.
+        context 는 딕셔너리 형태, 보통 context까지만 인자를 지정하는데
+        content_type은 어떤 content_type을 가질것인지, 미지정하면 text/html의 content_type
+        status는 상태코드 생략하면 200, using은 어떠한 템플릿 엔진을 사용할것인지
+        지정하지 않으면 settings.py에 지정된 템플릿엔진이 사용됨.
+        주로 앞에 3개만 지정한다.
 
-    render안에서 render_to_string을 호출하고 문자열로 리턴한다.
+        render안에서 render_to_string을 호출하고 문자열로 리턴한다.
 
-    #활용코드
-    def index(request):
-        return render(request,'myapp/index.html',{'name':'AskCompany',})
+        #활용코드
+        def index(request):
+            return render(request,'myapp/index.html',{'name':'AskCompany',})
 
 - 장고의 빌트인 백엔드
     - django.template.backends.django.DjangoTemplates
