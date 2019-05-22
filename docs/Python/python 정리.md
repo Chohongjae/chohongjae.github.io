@@ -1,12 +1,17 @@
 - List Comprehensions
-    1. if 사용 -> [x for x in b if x == 1]
-	2. if else 사용 -> [' ' if b == ' '  else '개굴' for b in a]
+
+        1. if 사용 -> [x for x in b if x == 1]
+        2. if else 사용 -> [' ' if b == ' '  else '개굴' for b in a]
 
 
 
-- print문에서 다음 번 출력이 바로 뒤에 오게하고싶을때는 print('hi',end=' ')
+- print문에서 다음 번 출력이 바로 뒤에 오게하고싶을때는 
+    
+        print('hi',end=' ')
 
-- 두개의 리스트를 순서대로 짝지어서 딕셔너리를 만들 때 -> dict(zip(a, b))
+- 두개의 리스트를 순서대로 짝지어서 딕셔너리를 만들 때 
+    
+        dict(zip(a, b))
 
 - from optparse import OptionParser 을 사용하면 커맨드 라인에서 실행할 때 option값을 파싱해준다.
 
@@ -28,7 +33,6 @@
 
 	 
 - 딕셔너리의 key의 이름을 바꾸고 싶을때          
-
 
        keys_in_keys = list(keys.keys())   
        for i in keys_in_keys: 
@@ -168,4 +172,50 @@
         staticmethod에서는 부모클래스의 클래스속성 값을 가져오지만, classmethod에서는 cls인자를 활용하여 cls의 클래스속성을 가져오는 것을 알 수 있습니다.
         classmethod와 static메소드의 차이는 상속에서 두드러지게 차이가 납니다.
 
- - 세트들끼리의 교집합을 찾기 위해서는 set.intersection(set(), set()) 식으로 사용하면 된다.
+ - 세트들끼리의 교집합을 찾기 위해서는 
+            
+        a = set()
+        b = set()
+        set.intersection(a,b)
+        혹은 a.intersection(b) 식으로 사용하면 된다.
+ 
+ - 파일과 디렉토리 경로 나누기
+ 
+ 
+        현재 작업 폴더 얻기 : os.getcwd() # "C:\Temp"
+        
+        디렉토리 변경 : os.chdir("C:\Tmp")
+        
+        특정 경로에 대해 절대 경로 얻기 : 
+        os.path.abspath(".\\Scripts") 
+        # "C:\Python35\Scripts"
+        
+        경로 중 디렉토리명만 얻기	: 
+        os.path.dirname("C:/Python35/Scripts/pip.exe") 
+        # "C:/Python35/Scripts"
+        
+        경로 중 파일명만 얻기 :
+        if os.path.isfile("C:/Python35/Scripts/pip.exe"):
+           print(os.path.basename("C:/Python35/Scripts/pip.exe"))
+        # "pip.exe"
+        
+        경로 중 디렉토리명과 파일명을 나누어 얻기	: 
+        dir, file = os.path.split("C:/Python35/Scripts/pip.exe")
+        
+        파일 각 경로를 나눠 리스트로 리턴하기(os.path.sep은 OS별 경로 분리자)	
+        "C:\Python35\Scripts\pip.exe".split(os.path.sep)
+        # ['C:', 'Python35', 'Scripts', 'pip.exe']
+        
+        경로를 병합하여 새 경로 생성 : 
+        os.path.join('C:\Tmp', 'a', 'b') 
+        # "C:\Tmp\a\b"
+        
+        디렉토리 안의 파일/서브디렉토리 리스트 : os.listdir("C:\Python35")
+        
+        파일 혹은 디렉토리 경로가 존재하는지 체크하기 : os.path.exists("C:\Python35")
+        
+        디렉토리 경로가 존재하는지 체크하기 : os.path.isdir("C:\Python35")
+        
+        파일 경로가 존재하는지 체크하기 : os.path.isfile("C:\Python35\python.exe")
+        
+        파일의 크기 : os.path.getsize("C:\Python35\python.exe")
