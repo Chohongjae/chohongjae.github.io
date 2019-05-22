@@ -172,12 +172,19 @@
         staticmethod에서는 부모클래스의 클래스속성 값을 가져오지만, classmethod에서는 cls인자를 활용하여 cls의 클래스속성을 가져오는 것을 알 수 있습니다.
         classmethod와 static메소드의 차이는 상속에서 두드러지게 차이가 납니다.
 
- - 세트들끼리의 교집합을 찾기 위해서는 
+ - 세트들끼리의 집합을 찾기 위해서는 
             
+        - 교집합    
         a = set()
         b = set()
         set.intersection(a,b)
         혹은 a.intersection(b) 식으로 사용하면 된다.
+        
+        - 합집합
+        a = set()
+        b = set()
+        set.union(a,b)
+        혹은 a.union(b) 식으로 사용하면 된다.
  
  - 파일과 디렉토리 경로 나누기
  
