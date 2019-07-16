@@ -17,7 +17,7 @@
             payload = {'some': 'data'}
             r = requests.post(url, data=json.dumps(payload))
             
-            예3) json 파라미터
+            예3) json 파라미터(단순히 json을 보내고 싶을 때)
             url = 'https://api.github.com/some/endpoint'
             payload = {'some': 'data'}
             r = requests.post(url, json=payload)
