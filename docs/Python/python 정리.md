@@ -1,3 +1,27 @@
+- requests 모듈을 사용할 때
+    - get 요청일 때(params 사용)
+     
+            payload = {'key1': 'value1', 'key2': 'value2'}
+            r = requests.get('http://httpbin.org/get', params=payload)
+            = > http://httpbin.org/get?key2=value2&key1=value1
+    - post 요청일 때(data 사용)
+            
+            예1) 딕셔너리 형식
+            payload = {'key1': 'value1', 'key2': 'value2'}
+            r = requests.post("http://httpbin.org/post", data=payload)
+            print(r.text)
+            
+            예2) json 형식
+            import json
+            url = 'https://api.github.com/some/endpoint'
+            payload = {'some': 'data'}
+            r = requests.post(url, data=json.dumps(payload))
+            
+            예3) json 파라미터
+            url = 'https://api.github.com/some/endpoint'
+            payload = {'some': 'data'}
+            r = requests.post(url, json=payload)
+
 - List Comprehensions
 
         1. if 사용 -> [x for x in b if x == 1]
@@ -14,7 +38,6 @@
         dict(zip(a, b))
 
 - from optparse import OptionParser 을 사용하면 커맨드 라인에서 실행할 때 option값을 파싱해준다.
-
 
 - ERROR 처리
     1. try - except:
