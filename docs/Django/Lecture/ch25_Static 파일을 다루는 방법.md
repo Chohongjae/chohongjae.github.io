@@ -27,13 +27,14 @@
             - 배포에서만 의미가 있는 설정
             
                 
-                추천 settings
-
-                STATIC_URL = '/static/'
-                STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
-                # 모든 여러 디렉토리에 나눠진 static 파일들을 루트디렉토리 아래에 static에 모으겠다.
-                STATICFILES_DIRS = [
-                        os.path.join(BASE_DIR, 'askdjango', 'static'),
+                    추천 settings
+    
+                    STATIC_URL = '/static/'
+                    STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+                    ->모든 여러 디렉토리에 나눠진 static 파일들을 루트디렉토리 아래에 static에 모으겠다.
+                    STATICFILES_DIRS = [
+                            os.path.join(BASE_DIR, 'askdjango', 'static'),
+                            ]
 
 - static files finders
     - Template Loader와 유사
