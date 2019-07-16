@@ -18,9 +18,9 @@
                         #do something with this user
                 
     - GET 요청 - > request.GET 
-          request url = polls/?question_id=3<br>
+          request url = polls/?question_id=3&question_name=test<br>
           urls.py -> polls/<br>
-          views.py -> request.GET['question_id'] or request.GET.get('question_id')  
+          views.py -> request.GET['question_id'] or request.GET.get('question_id') or request.GET['question_name']  
                 
                 url(r'^products/$', 'viewname', name='urlname')
                 def viewname(request):
@@ -29,7 +29,7 @@
     
     - EX)
 
-            - request url : https://localhost:8000/server/ad-api/test/4?id=3
+            - request url : https://localhost:8000/server/ad-api/test/4?id=3&pw=qwer123
             - django.urls.py : /server/ad-api/test/<int:pk>/                
             - django.views.py
                 pk = 4
@@ -39,7 +39,11 @@
                 request.GET.get('id2', default='7') = 7 (예외처리)
       
     - POST 요청 - > request.POST
-        - body에담냐뭐에담냐가아니라 데이터형식의 차이이다! {} 이렇게 json으로 오는것인지 아니면 id=3&pw=4이렇게오는것인지!
+        - POST를 처리할때는 클라이언트로부터 넘어오는 데이터 형식에 따라 처리 방식이 달라진다.
+        - body에 {} 이러한 형태의 json 타입(application/json)이 넘어오면 request.body로 처리하고
+        - body에 id=3&pw=4 식의 &로 구분되는 key=value 형태의 데이터(application/x-www-form-urlencoded)가 넘어오면<br>
+          request.POST로 처리한다.
+        
         - request의 content-type에는 application/x-www-form-urlencoded, text/plain multipart/form-data등이 있다.<br>
           POST 방식으로 데이터를 보낼때는 위와 같이 컨텐츠 타입을 꼭 명시해줘야한다.<br>
           보통 작성하지 않는 경우는 application/x-www-form-urlencoded 컨텐츠 타입으로 셋팅된다.<br>
@@ -51,7 +55,7 @@
                     ex) name_field=Default+name+for+team.&name_field2=Default+name+for+team2.
         
           - application/json 타입
-            - content-type이 application/json 이고 POST방식으로 BODY에 값이 담겨서 넘어오면<br>
+            - content-type이 application/json 이고 BODY에 json형태의 값이 담겨서 넘어오면<br>
               request.body로 받는다. application/json은 대부분의 API에서 활용하는 Content-Type 헤더로써<br>
               HTTP 요청을 하게 되면 body에 담긴 데이터를 서버가 JSON 타입으로 변환(json.loads())해서 사용한다.<br>
               그런데 body에 담긴 값은 byte타입이기 때문에 unicode 형식만 처리할 수 있어서<br>
@@ -69,21 +73,11 @@
         
                 content_type이 application/x-www-form-urlencoded 인 경우 request.POST 사용
                 content_type이 application/json 인 경우 request.body 사용
-                
-                def register(request):
-                    form = RegisterForm()
-                    if request.method == "POST":
-                        form = RegisterForm(request.POST) #if no files
-                        if form.is_valid():
-                        #do something if form is valid
-                    context = {
-                        'form': form
-                    }
-                    return render(request, "template.html", context)
 
     <br><br><br>
     
 # URLConf
+- 모든 url 끝에는 /를 붙여야하는 것이 장고의 규칙!
 - 요청이 들어오면 우선 urlpatterns상의 리스트를 처음부터 순차적으로 훑으며 url 매칭을 시도한다.<br>
   매칭되는 다수의 패턴이 있더라도 처음 발견되는 url로 매칭된다.
 
@@ -92,12 +86,10 @@
 
 - path에서는 기본지원되는 path converters(ex: '<'int:year'>')를 통해 정규표현식을 간소화 할 수 있다.<br>
   정규표현식을 '<'int:year'>' 이렇게 간략화 한다. 이런 형태는 숫자가 1회 이상 반복된다는 뜻! <br>
-  path는 정규표현식을 사용하지 않음. 횟수를 한정하고 싶으면 정규표현식을 사용한다.<br>
+  path는 정규표현식을 사용하지 않는데 횟수를 한정하고 싶으면 re_path를 사용해 정규표현식을 사용한다.<br>
   path일때는 매핑된 converter의 to_python에 맞게 변환된 값이 전달된다.<br>
   re_path에서는 1.xx 버전 그대로 정규표현식을 사용하고 모두 str 형태로 넘어간다.<br>
-  자주 사용되는 복잡한 패턴은 converter로 등록해서 재사용 가능.
-
-- 모든 url 끝에는 /를 붙여야하는 것이 장고의 규칙!
+  자주 사용되는 복잡한 패턴은 converter로 등록해서 재사용 가능하다.
 
 - 프로젝트를 처음 시작할때의 규칙으로 장고 앱을생성할때 url_patterns 위에 app_name = '앱이름' 을 넣어준다.<br>
   용도는 현재 url_pattern에 대한 이름을 정해주고 URL_REVERSE에서 사용하는데 view에서 url_reverse를 사용해서<br>
