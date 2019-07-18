@@ -22,7 +22,7 @@
           urls.py -> polls/<br>
           views.py -> request.GET['question_id'] or request.GET.get('question_id') or request.GET['question_name']  
                 
-                url(r'^products/$', 'viewname', name='urlname')
+                url(r'^products/', 'viewname', name='urlname')
                 def viewname(request):
                     price_lte = request.GET['price_lte']
                     #Code to filter products whose price is less than price_lte i.e. 5000
@@ -92,10 +92,11 @@
   자주 사용되는 복잡한 패턴은 converter로 등록해서 재사용 가능하다.
 
 - 프로젝트를 처음 시작할때의 규칙으로 장고 앱을생성할때 url_patterns 위에 app_name = '앱이름' 을 넣어준다.<br>
+  해당 앱을 호출하는 url에서 include에 name 형태를 쓰지말고 호출되는 앱의 urls.py 파일 내에 변수 app_name을<br>
+  정의하면 그것이 django 에서는 제공하는 namespace 이다.<br>
   용도는 현재 url_pattern에 대한 이름을 정해주고 URL_REVERSE에서 사용하는데 view에서 url_reverse를 사용해서<br>
   url의 네임으로 리다이렉트할 때 사용된다!
-    - django 에서는 namespace 를 제공한다. urls.py 파일을 열어서 app_name 이라는 변수명으로 이름을 적용한다.<br>
-            
+    
             -url.py
             from django.urls import path 
             from . import views 
@@ -108,7 +109,7 @@
                 path('<int:user_id>/vote/', views.vote, name='vote'),  
             ]
             
-            -template.py
+            -template.html
             <li><a href="{% url 'helloworld:detail' user.id %}">{{user.email}} [{{user.name}}]</a></li>
     
     - 즉, 'helloworld:detail' 이런식으로 사용하려면 'appname:url_name' 다 설정해줘야한다!
@@ -135,7 +136,7 @@
             
             - template.py
             <p>Please go <a href="{% url 'passwords_api_root' %}">here</a></p>
-            
+
 
 
 # request.data in DRF vs request.body in Django
