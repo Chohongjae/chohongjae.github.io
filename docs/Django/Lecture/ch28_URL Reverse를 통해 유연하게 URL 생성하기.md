@@ -110,8 +110,8 @@
             
     - 다음과 같이 사용하실 수도 있습니다. 어떻게?
 
-            resolve_url(post)
-            redirect(post)
+            resolve_url(post) == post.get_absolute_url()
+            redirect(post) == post.get_absolute_url()
             {{ post.get_absolute_url }}
 
 - 모델 클래스에 get_absolute_url() 구현
