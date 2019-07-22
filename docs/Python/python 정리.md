@@ -256,3 +256,11 @@
         파일 경로가 존재하는지 체크하기 : os.path.isfile("C:\Python35\python.exe")
         
         파일의 크기 : os.path.getsize("C:\Python35\python.exe")
+
+- 딕셔너리의 키를 통해 값을 가져올 때 
+        
+        a = {'q':'b'} 일때
+        a.get('t') 여도 오류나지 않는다.
+        false를 반환할 뿐이여서 a.get('t','')이런식으로 하지 않아도 된다.
+        
+       
