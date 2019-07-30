@@ -41,6 +41,8 @@
 
 # settings 모듈
 - settings란?
+    - settings.py는 현재 프로젝트에서 장고 기본설정(django/conf/global_settings.py)를 덮어쓰고, 새롭게 지정할 설정파일이다.
+    - 장고 기본설정(django/conf/global_settings.py)을 다 로딩하고 새롭게 오버라이트할 설정파일이다.
     - 다양한 프로젝트 설정을 담는 파이썬 소스 파일
         - 장고 앱 설정, DB 설정, 캐시 설정 등등
         - 디폴트 설정(django/conf/global_settings.py) 을 기본으로 깔고, 지정 settings를 통해 필요한 설정을 재정의
