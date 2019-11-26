@@ -23,10 +23,10 @@
     
 - Media 파일, 관련 settings 예시
     - 각 설정의 디폴트 값
-        - MEDIA_URL = “”
+        - MEDIA_URL = “”(default)
             - 각 media 파일에 대한 URL Prefix
                 - 필드명.url 속성에 의해서 참조되는 설정
-        - MEDIA_ROOT = “”
+        - MEDIA_ROOT = “”(default)
             - 파일필드를 통한 저장 시에, 실제 파일을 저장할 ROOT 경로
         - 기본 설정이 "" 빈문자열이고 settings에 정의되어있지 않기 때문에 저 상태로 파일 업로드시<br>
         manage.py가 있는 경로에 upload되게 된다.
@@ -90,6 +90,7 @@
         - 파일 저장 후에 upload_to 인자를 변경한다고 해서, DB에 이미 저장된 경로값이 갱신되진 않습니다.
     - 인자 유형
         - 문자열로 지정
+            - 이 옵션을 지정하지 않으면 media_root 바로 밑에 바로 저장된다. 
             - 파일을 저장할 “중간 디렉토리 경로”로서 활용
             - EX) 'A/B/C' = > /media/A/B/C/파일명
             - 실제 DB에는 'A/B/C/파일명' 으로 저장된다.

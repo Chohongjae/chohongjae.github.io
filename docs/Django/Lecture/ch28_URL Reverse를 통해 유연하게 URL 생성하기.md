@@ -16,6 +16,53 @@
                 path('weblog/', blog_views.post_list, name='post_list'),
                 path('weblog/<int:pk>/', blog_views.post_detail, name='post_detail'),
              ]
+             
+- 프로젝트를 처음 시작할때의 규칙으로 장고 앱을생성할때 url_patterns 위에 app_name = '앱이름' 을 넣어준다.<br>
+  해당 앱을 호출하는 url에서 include에 name 형태를 쓰지말고 호출되는 앱의 urls.py 파일 내에 변수 app_name을<br>
+  정의하면 그것이 django 에서는 제공하는 namespace 이다.<br>
+  용도는 현재 url_pattern에 대한 이름을 정해주고 URL_REVERSE에서 사용하는데 view에서 url_reverse를 사용해서<br>
+  url의 네임으로 리다이렉트할 때 사용된다!
+    
+            -url.py
+            from django.urls import path 
+            from . import views 
+
+            app_name = 'helloworld' 
+            urlpatterns = [ 
+                path('', views.index, name="index"),      
+                path('<int:user_id>/', views.detail, name='detail'), 
+                path('<int:user_id>/results/', views.results, name='results'), 
+                path('<int:user_id>/vote/', views.vote, name='vote'),  
+            ]
+            
+            -template.html
+            <li><a href="{% url 'helloworld:detail' user.id %}">{{user.email}} [{{user.name}}]</a></li>
+    
+    - 즉, 'helloworld:detail' 이런식으로 사용하려면 'appname:url_name' 다 설정해줘야한다!
+    - 프로젝트 url안에는 namespace, 앱 폴더 url안에는 name을 사용했는데, namespace는 앱을 구분해주는<br>
+      기능이라고 생각하면 되고, 앱 url안에 name은 각 url의 이름을 붙이는 기능이라고 생각하면된다.<br>
+      이 기능을 사용해서 나중에 TDD 개발과 내부에서 라우팅시에 reverse('namespace:name')으로 url로 라우팅 가능하다.<br>
+      앱에대한 alias url에대한 alias라 생각하면 될 듯하다.
+      
+            No. It is just that django gives you the option to name your views in case 
+            you need to refer to them from your code, or your templates. 
+            This is useful and good practice because you avoid hardcoding urls on your code or 
+            inside your templates. Even if you change the actual url, you don't have to change anything else, 
+            since you will refer to them by name.
+
+            e.x with views:
+            
+            from django.http import HttpResponseRedirect
+            from django.core.urlresolvers import reverse #this is deprecated in django 2.0+
+            from django.urls import reverse #use this for django 2.0+
+            
+            def myview(request):
+                passwords_url = reverse('passwords_api_root')  # this returns the string `/passwords/`
+                return HttpResponseRedirect(passwords_url)
+            
+            - template.py
+            <p>Please go <a href="{% url 'passwords_api_root' %}">here</a></p>
+
 
 - URL Reverse의 혜택
     - 개발자가 일일이 URL을 계산하지 않아도 됩니다. 만세 ~~~
