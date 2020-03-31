@@ -36,16 +36,32 @@ def solution_use_list(priorities, location):
             tmp.pop(0)
 
 
+def solution(priorities, location):
+    from collections import deque
+    queue = deque([(idx, i) for idx, i in enumerate(priorities)])
+    answer = 0
+
+    while True:
+        current_max = max([q[1] for q in queue])
+        if queue[0][1] != current_max:
+            queue.append(queue.popleft())
+        else:
+            tmp = queue.popleft()
+            answer += 1
+            if tmp[0] == location:
+                return answer
+
+
 if __name__ == "__main__":
-    import time
-
-    start = time.time()
-    print(solution_use_deque([1, 1, 9, 1, 1, 1], 0))
-    print("time :", time.time() - start)
-
-    start = time.time()  # 시작 시간 저장
-    print(solution_use_list([1, 1, 9, 1, 1, 1], 0))
-    print("time :", time.time() - start)
+    print(solution([1, 1, 9, 1, 1, 1], 0))
+    # import time
+    # start = time.time()
+    # print(solution_use_deque([1, 1, 9, 1, 1, 1], 0))
+    # print("time :", time.time() - start)
+    #
+    # start = time.time()  # 시작 시간 저장
+    # print(solution_use_list([1, 1, 9, 1, 1, 1], 0))
+    # print("time :", time.time() - start)
 
     '''
     리스트의 원소가 적을떄에는 deque가 더 오래걸리는듯 하다.
