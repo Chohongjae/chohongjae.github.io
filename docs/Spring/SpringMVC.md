@@ -31,7 +31,7 @@
 ![spring-rest-controller](../images/spring-rest-controller.png)
 - @RestController 에서 return 되는 값은 View Page를 통해 출력되는 것이 아니라 HTTP ResponseBody에 직접 쓰여지게 된다.
 
-## Spring Boot에서 RESTful방식의 @Controller을 사용할 때
+## Spring Boot에서 @Controller을 사용할 때
 ![spring-controller](../images/spring-controller.png)
 
 - 사용자의 요청이 오면 등록된 ViewResolver를 통해 사용자에게  text/html 타입의 응답을 보내주게 된다.
