@@ -76,3 +76,7 @@ VM과의 성능차이는 없지만 훨씬 가볍고 빠르게 구동될 수 있�
 
 - docker rmi ubuntu
     - ubuntu라는 이미지를 지운다.
+    
+    
+- 참고
+https://www.popit.kr/%EA%B0%9C%EB%B0%9C%EC%9E%90%EA%B0%80-%EC%B2%98%EC%9D%8C-docker-%EC%A0%91%ED%95%A0%EB%95%8C-%EC%98%A4%EB%8A%94-%EB%A9%98%EB%B6%95-%EB%AA%87%EA%B0%80%EC%A7%80/
