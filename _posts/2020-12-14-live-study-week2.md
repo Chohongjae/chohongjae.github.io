@@ -183,8 +183,8 @@ short shortNum = (short) intNum;
 - 2차 배열 선언하기
 ```java
     int[][] array = new int[10][10]; // 행길이 10 x 열길이 10 사이즈의 배열 선언.
-    int[][] array2 = {{4,5,6},{7,8,9}}; // 초기값을 지정.
-``` 
+    int[][] array2 = {{4,5,6}, {7,8,9}}; // 초기값을 지정.
+```
     
 ### 타입 추론 var
     Java 10에서 var라는 Local Variable Type-Inference 가 추가되었다.
