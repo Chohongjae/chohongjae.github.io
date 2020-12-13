@@ -1,5 +1,5 @@
 ---
-title: "라이브 스터디 2주차"
+title: "라이브 스터디 3주차"
 categories: 
   - LiveStudy
 last_modified_at: 2020-12-14T22:00:00+09:00
