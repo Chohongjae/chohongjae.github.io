@@ -9,5 +9,7 @@ posts:
     children:
       - title: "Java"
         url: /categories/#java
+  - title: LiveStudy
+    children:
       - title: "LiveStudy"
         url: /categories/#LiveStudy
