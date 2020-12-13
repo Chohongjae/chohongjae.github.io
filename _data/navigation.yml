@@ -5,13 +5,7 @@ main:
     url: /categories/
 
 posts:
-  - title: Back-End
+  - title: Language
     children:
-      - title: "Spring"
-        url: /categories/#spring
-      - title: "Play Framework"
-        url: /categories/#blogging
-      - title: "Linux"
-        url: /categories/#linux
-      - title: "DB"
-        url: /categories/#db
+      - title: "JAVA"
+        url: /categories/#java
