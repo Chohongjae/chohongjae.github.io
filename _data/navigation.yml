@@ -4,6 +4,7 @@ main:
   - title: "Category"
     url: /categories/
 
+
 posts:
   - title: Language
     children:
