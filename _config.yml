@@ -1,5 +1,5 @@
 remote_theme             : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "ko"
@@ -144,10 +144,7 @@ defaults:
       comments: true
       related: true
       show_date: true
-#      toc: true
-#      toc_sticky: true
-#      toc_label: "Table of Contents"
-#      toc_icon: "cog"
+      classes: wide
   - scope:
       path: _pages
       type: pages
@@ -156,3 +153,6 @@ defaults:
         nav: "posts"
       layout: single
       author_profile: true
+      classes: wide
+
+search: true
