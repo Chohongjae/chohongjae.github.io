@@ -2,7 +2,7 @@
 title: "라이브 스터디 1주차"
 categories: 
   - LiveStudy
-last_modified_at: 2020-12-13T19:00:00+09:00
+last_modified_at: 2020-12-13T22:00:00+09:00
 ---
 
 # 목표
