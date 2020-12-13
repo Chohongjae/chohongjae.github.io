@@ -20,7 +20,7 @@ title                    : "Devlog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Chohongjae"
-description              : "An amazing website."
+description              : "Hongje Cho's Dev Blog"
 url                      : "https://chohongjae.github.io"
 baseurl                  : ""
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
