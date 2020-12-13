@@ -106,7 +106,6 @@ last_modified_at: 2020-12-13T22:00:00+09:00
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/JIT2.png" alt=""> {% endraw %}
 
 ### JVM 구성 요소
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/JVM.png" alt=""> {% endraw %}
     
     JVM은 크게 4가지 구성요소로 이루어져 있다.
     
@@ -140,6 +139,8 @@ last_modified_at: 2020-12-13T22:00:00+09:00
         - 자바 애플리케이션에서 C, C++, 어셈블리로 작성된 Native 키워드를 사용한 함수를 사용할 수 있는 방법 제공
     4-2. 네이티브 메소드 라이브러리
         - C, C++로 작성 된 라이브러리
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/JVM.png" alt=""> {% endraw %}
 
 ### JRE란
     JRE(Java Runtime Enviroment)란 컴파일된 자바 프로그램을 실행(JRE의 목적)시킬 수 있는 자바 실행 환경으로
