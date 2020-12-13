@@ -19,7 +19,7 @@ locale                   : "ko"
 title                    : "Devlog"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
+name                     : "Chohongjae"
 description              : "An amazing website."
 url                      : "https://chohongjae.github.io"
 baseurl                  : ""
