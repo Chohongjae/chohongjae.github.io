@@ -94,9 +94,9 @@ analytics:
 # Site Author
 author:
   name             : "Chohongjae"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/img/profile.jpeg"
   bio              : "기술 공부 블로그"
-  location         : "Seoul/Republic of Korea"
+  location         : "Seoul / Republic of Korea"
   email            : "bjq913@gmail.com"
   linkedin         : "홍제-조-4b8255176"
   github           : "chohongjae"
