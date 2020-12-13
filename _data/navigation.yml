@@ -3,3 +3,15 @@ main:
     url: "/"
   - title: "Category"
     url: /categories/
+
+posts:
+  - title: Back-End
+    children:
+      - title: "Spring"
+        url: /categories/#spring
+      - title: "Play Framework"
+        url: /categories/#blogging
+      - title: "Linux"
+        url: /categories/#linux
+      - title: "DB"
+        url: /categories/#db
