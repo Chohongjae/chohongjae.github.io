@@ -7,5 +7,7 @@ main:
 posts:
   - title: Language
     children:
-      - title: "JAVA"
+      - title: "Java"
         url: /categories/#java
+      - title: "LiveStudy"
+          url: /categories/#LiveStudy
