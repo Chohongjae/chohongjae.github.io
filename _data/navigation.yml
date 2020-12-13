@@ -1,6 +1,6 @@
 main:
   - title: "Category"
-    url: /about
+    url: /about/
   - title: "Category"
     url: /categories/
 
