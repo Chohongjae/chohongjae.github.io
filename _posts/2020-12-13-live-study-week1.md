@@ -21,7 +21,7 @@ last_modified_at: 2020-12-13T22:00:00+09:00
 ### JVM이란 무엇인가
     JVM이란 Java Virtual Machine 의 줄임말로 write once, run everywhere
     즉, OS마다 따로 코드를 작성해야하는 번거로움 없이 '플랫폼, OS에 독립적'으로 Java 프로그램을 작성하여 실행할 수 있게 해주는 표준이자 구현체이다.
-    
+     
     이러한 JVM은 어떻게 동작할까?
     
     예를 들어 C 프로그램은 바로 *기계어로 컴파일 되므로 *H/W 에 맞게 각각 컴파일되어야 한다.
