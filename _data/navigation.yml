@@ -9,7 +9,15 @@ posts:
     children:
       - title: "Java"
         url: /categories/#java
+      - title: "Python"
+        url: /categories/#python
   - title: LiveStudy
     children:
       - title: "LiveStudy"
         url: /categories/#LiveStudy
+  - title: Back-End
+      children:
+      - title: "Spring"
+        url: /categories/#spring
+      - title: "Django"
+        url: /categories/#django
