@@ -43,7 +43,7 @@ last_modified_at: 2020-12-13T22:00:00+09:00
     2) 바이트 코드를 해석하며
     3) 메모리 등의 자원을 할당하고 관리하며 정보를 처리하는 프로그램
     
-<img src="https://chohongjae.github.io/assets/img/java프로그램이실행되는순서.png" alt=""> 
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/java프로그램이실행되는순서.png" alt=""> {% endraw %} 
 
 ### 바이너리 코드란 무엇인가
     바이너리 코드는 컴퓨터가 인식할 수 있는 0과 1로 구성된 이진코드를 의미한다.
@@ -88,7 +88,7 @@ last_modified_at: 2020-12-13T22:00:00+09:00
 
     즉 간단히 말해서 JRE안에 존재하면서 프로그램을 실행할 때 기계어로 번역해 전달하는 장치인 것이다.
 
-![JIT](../assets/img/JIT.png)
+![JIT](../assets/img/20201213livestudyweek1/JIT.png)
 
 ### 그렇다면 이러한 JIT는 왜 쓰이고 어떻게 동작할까?
     자바 바이트 코드는 인터프리터 언어(interpreter language)이다. 
@@ -103,10 +103,10 @@ last_modified_at: 2020-12-13T22:00:00+09:00
     초기 실행 속도와 메모리 사용량에서 손해를 보는 단점도 있다.
     따라서, JIT 컴파일러를 사용하는 JVM들은 내부적으로 해당 메서드가 얼마나 자주 수행되는지 체크하고, 일정 정도를 넘을 때에만 컴파일을 수행한다.
 
-![JIT2](../assets/img/JIT2.png)
+![JIT2](../assets/img/20201213livestudyweek1/JIT2.png)
 
 ### JVM 구성 요소
-![JVM](../assets/img/JVM.png)
+![JVM](../assets/img/20201213livestudyweek1/JVM.png)
     
     JVM은 크게 4가지 구성요소로 이루어져 있다.
     
@@ -146,7 +146,7 @@ last_modified_at: 2020-12-13T22:00:00+09:00
     JVM + JVM이 자바 프로그램을 동작시킬 때 필요한 핵심 라이브러리 파일 + 자바 런타임 환경에서 사용하는 프로퍼티 세팅이나 리소스 파일을 가지고 있다.
     JRE는 *.class 파일을 JVM으로 로딩시키는 역할을 하고, JVM은 *.class 파일을 해석해 실행할 수 있는 상태로 만든다.
     
-![jre](../assets/img/jre.png)
+![jre](../assets/img/20201213livestudyweek1/jre.png)
 
 ### JDK란
     JDK(Java Development kit)란 자바 애플리케이션 개발 환경으로 
@@ -154,7 +154,7 @@ last_modified_at: 2020-12-13T22:00:00+09:00
     
     즉 JDK를 설치하면 JRE도 같이 설치가 되기 때문에, JDK = JRE + @ 이다.
     
-![jdk](../assets/img/jdk.png)
+![jdk](../assets/img/20201213livestudyweek1/jdk.png)
 
 # 전체적인 흐름
     자바 소스파일을 Java Complier 가 바이트 코드(*.class)로 변환하고, Class Loader 가 Runtime Data Area 에 클래스 파일을 적재 시킨다.
