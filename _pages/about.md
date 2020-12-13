@@ -2,7 +2,7 @@
 layout: archive
 permalink: /about/
 title: "Posts by Category"
-author_profile: false
+author_profile: true
 sidebar:
-    nav: "about"
+    nav: "posts"
 ---
