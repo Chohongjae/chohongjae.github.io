@@ -16,7 +16,7 @@ posts:
       - title: "LiveStudy"
         url: /categories/#LiveStudy
   - title: Back-End
-      children:
+    children:
       - title: "Spring"
         url: /categories/#spring
       - title: "Django"
