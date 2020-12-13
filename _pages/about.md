@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /about/
-title: "Posts by Category"
+title: "About Chohongjae"
 author_profile: true
 sidebar:
     nav: "posts"
