@@ -1,5 +1,5 @@
 main:
   - title: "Home"
     url: "/"
-   - title: "Category"
-     url: "/categories/"
+  - title: "Category"
+    url: "/categories/"
