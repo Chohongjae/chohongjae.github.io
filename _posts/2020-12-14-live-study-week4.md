@@ -23,6 +23,7 @@ last_modified_at: 2020-12-14T22:00:00+09:00
     '조건'에는 boolean의 변수나 결과가 boolean이 되는 식을 작성할 수 있다.
     이 조건식이 true 인 경우에 한해서 if 블록 안에 쓰여진 처리를 실행한다.
     또한 else 블록을 작성함으로써 조건에 일치하지 않은 경우에 실시하는 처리를 작성할 수 있다.
+    
 ```java
 int month = LocalDateTime.now().getMonthValue();
 
@@ -50,6 +51,7 @@ switch(변수) {
         break;
 }
 ```  
+
     switch에 사용하는 변수(또는 계산 결과)로는 다음과 같은 것들을 이용할 수 있다.
     - 숫자값
     - enum 타입
@@ -58,6 +60,7 @@ switch(변수) {
     이 변수가 case의 옆에 쓰인 값에 일치하는 경우 그 다음에 작성된 처리를 실행하며 실행은 break가 있는 부분까지 계속된다.
     위의 예에서는 변수가 값1에 일치한 경우에는 값1의 처리를 실시하고 break가 없으므로 값2의 처리도 계속해서 실시한다.
     어느 조건에도 일치하지 못한 경우에는 default에 기재된 처리를 실시하고 default는 생략 가능하다.
+    
 - [자바 14에 새롭게 생긴 switch 표현식의 사용방법](https://github.com/Chohongjae/javaStudy/blob/main/live-study/week3.md#Java-13.-switch-%EC%97%B0%EC%82%B0%EC%9E%90)
 
 ### 반복문
