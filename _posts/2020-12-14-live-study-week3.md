@@ -30,6 +30,7 @@ last_modified_at: 2020-12-14T22:00:00+09:00
     ++ 와 -- 는 기술하는 위치에 따라 약간 동작이 다른데 
     연산자를 왼쪽에 작성하면(전치 연산) "먼저 계산을 한 후" 그 결과를 사용한다.
     반대로 연산자를 오른쪽에 작성하면(후치 연산) "현재의 값이 사용되고나서" 그후에 계산을 한다.
+    
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201214livestudyweek3/산술연산자.png" alt=""> {% endraw %}
 - [이미지 출처](http://blog.daum.net/hsjeong106/53)
     
@@ -42,12 +43,14 @@ System.out.println(numberB); // 2
 ```        
 ### 비트 연산자
     비트 연산자는 숫자값의 비트 연산을 실시할 수 있는 연산자다.
+    
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201214livestudyweek3/비트연산자.png" alt=""> {% endraw %}
 - [이미지 출처](https://velog.io/@foeverna/Java-%EC%97%B0%EC%82%B0%EC%9E%90-%EA%B4%80%EA%B3%84-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4-%EB%B9%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)    
 
 
 ### 관계 연산자
     관계 연산자는 2개의 인수를 비교하는 연산자다.
+    
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201214livestudyweek3/관계연산자.png" alt=""> {% endraw %}
 - [이미지 출처](https://programmer-seva.tistory.com/8)
 ```java
@@ -57,6 +60,7 @@ System.out.println(result); // false
 
 ### 논리 연산자
     논리 연산자는 참과 거짓을 판정하는 논리 연산을 실시하기 위한 연산자다.
+    
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201214livestudyweek3/논리연산자.png" alt=""> {% endraw %}
 - [이미지 출처](https://velog.io/@foeverna/Java-%EC%97%B0%EC%82%B0%EC%9E%90-%EA%B4%80%EA%B3%84-%EB%85%BC%EB%A6%AC-%EC%A1%B0%EA%B1%B4-%EB%B9%84%ED%8A%B8-%EC%97%B0%EC%82%B0%EC%9E%90)
 ```java
@@ -100,6 +104,7 @@ public class FooService extends AbstractBaseService {
 ```
 ### assignment(=) operator
     대입 연산자는 값을 대입하거나 대입과 함께 연산을 실시하기 위한 연산자다.
+    
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201214livestudyweek3/대입연산자.png" alt=""> {% endraw %}
 - [이미지 출처](https://unknownyun.blogspot.com/2018/08/blog-post_80.html)
 ```java
@@ -132,6 +137,7 @@ System.out.println(num); // 100
     
 ### 3항 연산자
     2개의 식 중 어느 것을 이용할 것인지 판정하기 위한 연산자다.
+    
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201214livestudyweek3/3항연산자.jpeg" alt=""> {% endraw %}
 - [이미지 출처](https://coding-factory.tistory.com/266)
 ```java
@@ -142,6 +148,7 @@ System.out.println(result); // true
 ### 연산자 우선 순위
     기본적으로 연산자에는 우선순위가 있으며, 괄호의 우선순위가 제일 높고, 산술 > 비교 > 논리 > 대입의 순서이며 단항 > 이항 > 삼항의 순서이다.
     연산 진행방향은 왼쪽에서 오른쪽으로 수행되며, 단항 연산자와 대입 연산자의 경우에는 오른쪽에서 왼쪽으로 수행된다.
+    
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201214livestudyweek3/연산자우선순위.png" alt=""> {% endraw %}
 - [이미지 출처](https://toma0912.tistory.com/66)
 
