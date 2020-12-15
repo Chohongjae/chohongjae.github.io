@@ -15,7 +15,7 @@ words_per_minute         : 200
 comments:
   provider: "disqus"
   disqus:
-    shortname: "blog-chohongjae"
+    shortname: "http-chohongjae-github-io"
 
 # Site Author
 author:
