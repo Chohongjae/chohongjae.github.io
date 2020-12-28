@@ -203,7 +203,91 @@ public class BusExam{
 ```   
 
 ### 메소드 오버라이딩
+    메소드 오버라이딩이란 부모 클래스의 메소드를 자식 클래스가 동일한 형태로 또 다시 구현하는 행위를 말하는데
+    자식 클래스가 부모 클래스의 메소드와 동일한 입출력의 형태와 이름의 메소드를 재정의하면 자식 클래스가 구현한 메소드가
+    더 높은 우선순위를 갖게 되어 호출시 자식 클래스의 메소드가 호출되게 된다.
+
+```java
+public class Car{
+    public void printName() {
+        System.out.println("Car 입니다.");
+    }
+}
+
+public class Bus() extends Car {
+    @Override
+    public void printName() {
+        System.out.println("Car 중 Bus 입니다.");
+    }   
+}
+
+public class BusExam{
+    public static void main(String args[]){
+        Bus b = new Bus();
+        b.printName(); // "Car 중 Bus 입니다."
+    }
+}
+```
+
+### 추상 클래스
+    우선 한마디로 추상 클래스는 계승될 것을 전제로 한 클래스다.
+    예를 들어 A클래스, B클래스, C클래스가 있고 이 클래스들에 비슷한 필드와 메서드가 있을 때
+    공통적인 부분을 추출해 만든 클래스를 추상 클래스라 한다.
     
+    구체적인 예를 들어보면, 키보드라는 클래스가 있을 때 A 제조사의 키보드와 B 제조사의 키보드, C 제조사의 키보드는
+    각 제조사만의 스타일대로 키보드를 제작할 것이다. 하지만 키보드는 버튼이라는 필드와 클릭이라는 행위, 메소드는 모든 제조사의
+    키보드가 공통적으로 가지고 있을 것이다. 그럼 버튼이라는 필드와 클릭이라는 메소드가 키보드라는 추상 클래스안에 존재하면 되는 것이다.
+
+```java
+public abstract class Keyboard{
+    public String button;
+    
+    public void print() {
+        System.out.println("키보드입니다.");
+    }   
+    
+    public abstract void click();
+}
+
+public class AKeyboard() extends Keyboard {
+    @Override
+    public void click() {
+        System.out.println("딸깍"); // 반드시 click() 메소드를 구현해야 한다.
+    }   
+}
+
+public class BKeyboard() extends Keyboard{
+    @Override
+    public void click() {
+        System.out.println("딸깍딸깍"); // 반드시 click() 메소드를 구현해야 한다.
+    }
+    
+    public static void main(String[] args){
+      AKeyboard aKeyboard = new AKeyboard();
+      BKeyboard bKeyboard = new BKeyboard();
+ 
+      aKeyboard.click(); // 딸깍
+      bKeyboard.click(); // 딸깍딸깍
+    }
+
+}
+```
+
+    즉, 추상 클래스는 실체 클래스들의 공통적인 부분을 모아놓은, 어느정도 규격을 잡아놓은 클래스라고 이해하면 된다.
+    그렇기 때문에 추상 클래스는 실제 객체를 생성할 수 없고 실체 클래스들의 부모 역할을 하는 것이다.
+
+### 추상 클래스는 왜, 언제 사용할까?
+1. 같은 기능을 하는 클래스들의 필드와 메서드 이름을 통일하여 유지보수성을 높이고 통일성을 유지하기 위해 사용한다.
+2. 필드 및 메소드의 설계 시간을 줄이고 구현에만 집중하고자 사용한다.
+3. 규격에 맞게 소스가 구현되어 있기 때문에 해당 규격에 대한 구현부만 수정하면 손 쉽게 수정이 가능하기 때문에 사용한다.
+   
+## 추상 클래스의 특징
+1. 클래스 및 메소드에 abstract 수식자를 지정함으로써 추상 클래스 및 추상 메소드를 정의할 수 있다.
+2. 추상 클래스는 new 연산자를 이용하여 객체를 생성할 수 없다.
+3. 추상 클래스는 새로운 일반 클래스를 위한 "부모 클래스의 용도로만" 사용된다.
+4. 추상 클래스는 단일 상속만 가능하며 "일반 변수 및 일반 메소드"를 가질 수 있다.
+5. 추상 클래스는 동일한 부모를 가지는 클래스를 묶는 개념으로 상속을 받아서 기능을 확장시키는 것이 목적이다.
+6. 추상 클래스를 상속받은 클래스에서는 추상 메소드를 반드시 구현해야 한다.
 
 ### final 키워드 
     final 키워드는 변수를 변경할 수 없도록 하기 위한 수식자다.
@@ -256,16 +340,41 @@ public class Banana extends Fruit { // The type Banana cannot subclass the final
     자신이 작성한 메소드와 클래스를 다른 사람이 상속 받아서 사용하지 못하게 금지하고 싶을 떄 사용한다.
     
 ### Object 클래스
-    자바에서 만드는 모든 클래스는 Object라는 클래스를 상속받게 되어 있다. 사실 우리가 만든 Animal 클래스는 다음과 기능적으로 완전히 동일하다. 하지만 굳이 아래 코드처럼 Object 클래스를 상속하도록 코딩하지 않아도 자바에서 만들어지는 모든 클래스는 Object 클래스를 자동으로 상속받게끔 되어 있다.
+    자바에서 만드는 모든 클래스는 Object라는 클래스를 암시적으로 상속받게 되어 있다. 
+    그 이유는 모든 클래스가 공통으로 포함하고 있어야 하는 기능을 제공하기 위해서다.
     
-    public class Animal extends Object {
-        String name;
+    사실 우리가 위에서 만든 Banana 클래스는 다음과 기능적으로 완전히 동일하다.
+    하지만 굳이 아래 코드처럼 Object 클래스를 상속하도록 코딩하지 않아도 자바에서 만들어지는 모든 클래스는
+    Object 클래스를 자동으로 상속받게끔 되어 있다.
+
+```java
+public class Banana extends Object {
+}
+```
+
+    따라서 자바에서 만드는 모든 객체는 Object 자료형으로 사용할 수 있다.
+    즉, 다음과 같이 코딩하는 것이 가능하다.
     
-        public void setName(String name) {
-            this.name = name;
-        }
-    }
-    따라서 자바에서 만드는 모든 객체는 Object 자료형으로 사용할 수 있다. 즉, 다음과 같이 코딩하는 것이 가능하다.
+```java
+Object banana = new Banana();
+```
+
+    아래 그림은 Object 클래스가 제공하는 메소드 목록이다.
+    즉 자바의 객체는 아래의 메소드들을 반드시 가지고 있다고 할 수 있다.
     
-    Object animal = new Animal();
-    Object dog = new Dog();
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201227livestudyweek6/object메소드.png" alt=""> {% endraw %}
+- [이미지 출처](https://docs.oracle.com/javase/7/docs/api/java/lang/Object.html)
+
+### toString
+    toString은 객체를 문자로 표현하는 메소드이다.
+    해당 메소드를 호출하거나 System.out.println()으로 객체를 호출하면 패키지와 클래스명 그리고 고유한 식별 값이 나오는데
+    이 정보를 toString() 메소드를 오버라이딩 함으로써 더욱 유용하게 만들 수 있다.
+    
+```java
+System.out.println(banana);
+System.out.println(banana.toString());
+```
+
+### equals
+    equals는 객체와 객체가 같은 값, 내용인지를 비교하는 API이다.
+    반면에 == 연산자는 비교하고자 하는 대상의 주소값을 비교한다.
