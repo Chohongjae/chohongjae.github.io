@@ -13,7 +13,7 @@ last_modified_at: 2020-12-27T23:00:00+09:00
 - [자바 상속의 특징](#자바-상속의-특징)
 - [super 키워드](#super-키워드)
 - [메소드 오버라이딩](#메소드-오버라이딩)
-- [다이나믹 메소드 디스패치 (Dynamic Method Dispatch)](#다이나믹-메소드-디스패치)
+- [다이나믹 메소드 디스패치 (Dynamic Method Dispatch)](#Dynamic-Method-Dispatch)
 - [추상 클래스](#추상-클래스)
 - [final 키워드](#final-키워드)
 - [Object 클래스](#Object-클래스)
@@ -229,6 +229,85 @@ public class BusExam{
 }
 ```
 
+### Method Dispatch
+    우선 Method Dispatch란 어떤 메소드를 호출할 것인지를 내가 결정해서 실제로 그것을 실행하는 과정 및 작업을 말한다.
+    Method Dispatch에는 2가지 종류, static dispatch와 dynamic dispatch가 있다.
+
+### Static Dispatch
+    Static Dispatch는 컴파일 되는 시점에 어떤 메소드를 호출할 것인지 컴파일러도 알고 바이트 코드에도 정보가 남아있는 것을 말한다.
+    즉, 컴파일되는 시점에 어떤 메소드를 호출할 것인지 정확히 알고 있으면 Static Dispath이다.
+    
+```java
+public class Dispatch {
+    static class Service {
+        void run() {
+            System.out.println("run");
+        }
+        
+        void run(String msg) {
+            System.out.println("run" + msg);
+        }
+    }
+    
+    public static void main(String[] args) {
+      new Service().run(); // "컴파일 시점"에 인자가 없는 run() 메소드가 실행된다는 것을 알 수 있다.
+    }
+} 
+```
+
+### Dynamic Method Dispatch
+    그에반해 Dynamic Method Dispatch는 컴파일시점에서는 결정되어 있지 않고 런타임 시점에 알 수 있는 과정 및 작업을 말한다.
+    이것은 자바가 런타임 다형성을 구현하는 방법으로,
+    재정의 된 메서드가 참조에 의해 호출되면 java는 참조하는 객체 유형에 따라 실행할 해당 메서드의 버전을 결정한다.
+    간단히 말해서, 참조한 객체 유형에 따라 호출 될 재정의 된 메서드 버전이 결정되는 것이다. 
+    
+```java
+public class Dispatch {
+    static abstract class Service {
+        abstract void run();
+    }
+
+    static class MyService1 extends Service{
+        @Overried
+        void run() {
+          System.out.println("1");
+        }
+    }
+    
+    static class MyService2 extends Service{
+        @Override
+        void run() {
+            System.out.println("2");
+        }
+    }
+
+    public static void main(String[] args) {
+      Service svc = new MyService1();
+      svc.run();
+    }
+} 
+```
+    
+    Service라는 타입으로 svc라는 변수를 선언했을때 컴파일 시점에서는 run() 메소드가 어느 클래스의 메소드를
+    실행할것인지에 대한 정보가 결정되어 있지 않고, 바이트 코드에도 남아있지 않는다.
+    
+    이럴때 일어나는 것이 Dynamic Dispatch인데,    
+    런타임 시점에서 svc 변수에 할당되어있는 object가 무엇인지를 보고 걔에 의해서 결정되는 것이다.
+    
+    사실 메소드 호출과정에 첫번째로 들어가 있는것 중에 receiver parameter라는 것이 있다.
+    우리가 메소드 안에서 사용할 수 있는 this 키워드에 해당하는 object가 receiver parameter로 대입되고
+    그 this는 저 코드에서 MyService1 class의 객체이기 때문에 receiver parameter를 보고
+    실행할 메소드를 런타임 시점에 결정하는 것이다.
+    
+    즉 svc의 this인 MyService1 class의 객체가 receiver parameter로 결정되고 
+    receiver parameter를 보고 메소드를 결정하는 것이다.
+    만약 this가 변경된다면 receiver parameter도 변경될 것이고 실행할 메소드도 달라지게 된다.
+    
+***간단히 말해서 정적 바인딩은 메서드를 호출하는 개체의 유형이 컴파일러에 의해 컴파일 타임에 결정되는 경우를 의미하고<br>
+동적 바인딩은 메서드를 호출하는 개체의 유형이 런타임에 컴파일러에 의해 결정되는 경우를 의미한다.<br>
+그렇기 때문에 오버로드 된 메서드는 정적 바인딩을 사용하여 연결되는 반면 재정의 된 메서드는 런타임에 동적 바인딩을 사용하여 연결된다.***
+    
+    
 ### 추상 클래스
     우선 한마디로 추상 클래스는 계승될 것을 전제로 한 클래스다.
     예를 들어 A클래스, B클래스, C클래스가 있고 이 클래스들에 비슷한 필드와 메서드가 있을 때
