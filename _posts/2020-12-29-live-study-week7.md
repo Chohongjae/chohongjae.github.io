@@ -33,27 +33,25 @@ package com.chongjae.javastudy;
     3. 그룹 기능
     이러한 기능들이 있다고 가정했을 때
     
-    kr
-    |
-    | - - com
-          |
-          | - - chohongjae
-                    |
-                    | - - - - - messenger
-                                    |
-                                    | - - - - - account
-                                    |             |
-                                    |             | - - - - - AccountController.java 
-                                    |             | - - - - - AccountService.java
-                                    | - - - - - message
-                                    |             |
-                                    |             | - - - - - MessageController.java 
-                                    |             | - - - - - MessageService.java
-                                    | - - - - - group
-                                                  |
-                                                  | - - - - - GroupController.java 
-                                                  | - - - - - GroupService.java
-                                                       
+    com
+     |
+     | - - chohongjae
+                |
+                | - - - - - messenger
+                                |
+                                | - - - - - account
+                                |             |
+                                |             | - - - - - AccountController.java 
+                                |             | - - - - - AccountService.java
+                                | - - - - - message
+                                |             |
+                                |             | - - - - - MessageController.java 
+                                |             | - - - - - MessageService.java
+                                | - - - - - group
+                                              |
+                                              | - - - - - GroupController.java 
+                                              | - - - - - GroupService.java
+                                                   
     위와 같이 패키지를 이용하면 애플리케이션의 구성이 명확하게 되어 클래스가 갖는 역할을 보다 명확히 나타낼 수 있다.
     
     단, 패키지의 명명에 대해서는 주의가 필요한데 관례로 제 3자에게 제공하는 라이브러리나 프레임워크 등과
