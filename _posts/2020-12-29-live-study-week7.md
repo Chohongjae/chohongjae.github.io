@@ -146,6 +146,23 @@ java –classpath .:/Users/hongjae/develop HelloWorld
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20201229livestudyweek7/접근제한자.png" alt=""> {% endraw %}
 - [이미지 출처](https://studymake.tistory.com/424)
 
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201229livestudyweek7/PublicClassTest.png" alt=""> {% endraw %}
+- public으로 선언된 클래스와 메소드들
+- 클래스내에서 모든 메소드의 접근이 가능하다.
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201229livestudyweek7/DefaultClassTest.png" alt=""> {% endraw %}
+- default로 선언된 클래스와 메소드들
+- 물론 클래스내에서 모든 메소드의 접근이 가능하다.
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201229livestudyweek7/AccessModifierSamePackage.png" alt=""> {% endraw %}
+- public으로 선언된 클래스와 default으로 선언된 클래스와 같은 패키지이기 때문에 private 메소드를 제외하고 모두 접근이 가능하다.
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201229livestudyweek7/AccessModifierOuterPackage.png" alt=""> {% endraw %}
+- AccessModifierTest 클래스는 위에서 선언된 다른 클래스들과 패키지가 다르기 때문에 public 메소드만 접근이 가능하다.
+- AccessModifierTest2 클래스는 패키지가 달라도 위에서 선언된 public 클래스의 자식 클래스이기 때문에 public, protected 메소드 접근만 가능하다.
+- 위에서 default로 선언된 클래스는 패키지가 다르기 때문에 클래스를 import 할 수 없기 때문에 메소드나 필드에 접근할 수 없다.
+
 ***새로운 패키지의 클래스가 패키지 프라이빗인 경우 그 클래스가 갖고 있는 메소드나 필드가 public 이라고 해도<br>
 부모 클래스를 import 할 수 없기 때문에 해당 클래스의 메소드나 필드를 사용할 수 없다.***
     
