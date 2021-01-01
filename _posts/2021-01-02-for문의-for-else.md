@@ -29,4 +29,4 @@ else:
     위의 경우 처럼 for else 문을 사용한다면 flag 같은 변수를 사용하지 않아도 되서 코드가 훨씬 깔끔해 진다.
     else의 들여쓰기는 for와 일치해야 한다.
 
-- http://www.mukgee.com/?p=93
+- [참고](http://www.mukgee.com/?p=93)
