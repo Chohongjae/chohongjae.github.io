@@ -49,20 +49,21 @@ last_modified_at: 2021-01-01T01:00:00+09:00
         이렇게 매핑된 핸들러를 실제로 실행하는 역할은 핸들러 어댑터가 담당한다.
         HandlerAdapter 객체가 이 역할을 한다.
 
-5. Controller는 그 메서드를 수행한다. 이때 Service, DAO 등의 객체를 이용해 DB작업을 보통한다.
+5. Controller는 그 메서드를 수행한다. 이때 Service, DAO 등의 객체를 이용해 비즈니스 로직을 처리한다.
 
         컨트롤러는 해당 요청을 처리하는 로직을 담고있다.
         보통 요청의 종류 혹은 로직의 분류에 따라 내부적으로 Service 단위로 나누어 모듈화 한다.
         각 서비스에서는 DB 접근할 수 있는 Repository 객체를 이용하여 데이터에 접근할 수 있다.
 
-6. 찾은 메서드로 작업을 하고나면 결과를 HandlerAdapter에게 보내주는데, 이때 보통 ModelAndView라는 놈을 이용해서
-데이터(Model) 와 View 이름을 리턴해준다.
+6. 찾은 메서드로 작업을 하고나면 결과를 HandlerAdapter에게 보내주고, ModelAndView를 이용해서 데이터(Model)와 View 이름을 리턴한다.
 
-7. HandlerAdapter는 그 값을 DispatcherServlet에게 리턴해준다.
+7. HandlerAdapter는 그 값을 DispatcherServlet에게 리턴하고 다시 ViewResolver에게 View 이름을 통해 View를 찾게한다.
 
-8. DispatcherServlet이 View 이름을 ViewResolver에게 주고 이름을 통해 View를 찾게한다.
-
-9. ViewResolver은 해당하는 View 를 찾고 , 그 View에서는 만들어진 데이터(Model) 값으로 화면의 내용을 구성해서 클라이언트에게 보여준다.
+8. ViewResolver은 View 이름을 통해 해당하는 View 를 찾고, 그 View에서는 만들어진 데이터(Model) 값으로 화면의 내용을 구성해서 클라이언트에게 보여준다.
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210101spring/springmvc.png" alt=""> {% endraw %}
 
+### 정리
+    Spring MVC 프레임워크는 디커플된 웹 애플리케이션 개발 방법을 제공한다. 
+    Dispatcher Servlet, ModelAndView, View Resolver 와 같은 단순개념을 이용해서
+    웹 애플리케이션 개발을 쉽게 할 수 있도록 해준다.
