@@ -48,8 +48,11 @@ class DatetimeDecorator:
         self.func(*args, **kwargs)
         print(datetime.datetime.now())
 
-class MainClass:
-    @DatetimeDecorator
-    def main_function_1():
-        print "MAIN FUNCTION 1 START"
+@DatetimeDecorator
+def main_function():
+    print("MAIN FUNCTION 1 START")
+
+=> 2021-01-02 01:56:11.100935
+=> MAIN FUNCTION 1 START
+=> 2021-01-02 01:56:11.100980
 ```
