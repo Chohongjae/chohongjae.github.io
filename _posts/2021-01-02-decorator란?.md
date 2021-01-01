@@ -8,16 +8,21 @@ last_modified_at: 2021-01-02T02:00:00+09:00
     추가적으로 꾸며질 구문들을 정의해서 손쉽게 재사용 가능하게 해주는 것이다.
     
 ```python
+import datetime
 def datetime_decorator(func):
     def decorated():
-        print datetime.datetime.now()
+        print(datetime.datetime.now())
         func()
-        print datetime.datetime.now()
+        print(datetime.datetime.now())
         return decorated
 
 @datetime_decorator
 def main():
     print('hi')
+
+=> 2021-01-02 01:49:26.648680
+=> hi
+=> 2021-01-02 01:50:26.648680
 ```
 
     decorator 선언된 부분을 자세히 설명하면, 먼저 decorator 역할을 하는 함수를 정의하고,
@@ -34,13 +39,14 @@ def main():
     class 형태로도 구현이 가능하다.
 
 ```python
+import datetime
 class DatetimeDecorator:
     def __init__(self, f):
         self.func = f
     def __call__(self, *args, **kwargs):
-        print datetime.datetime.now()
+        print(datetime.datetime.now())
         self.func(*args, **kwargs)
-        print datetime.datetime.now()
+        print(datetime.datetime.now())
 
 class MainClass:
     @DatetimeDecorator
