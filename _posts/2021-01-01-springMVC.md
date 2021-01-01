@@ -4,8 +4,7 @@ categories:
   - spring
 last_modified_at: 2021-01-01T01:00:00+09:00
 ---
-
-# Spring MVC
+### Spring MVC
     spring MVC란 Front Controller Pattern에 기초한 spring 프레임워크에서 제공하는 웹 모듈이다.
     MVC 패턴에 기초하여 웹 프로그래밍을 할 수 있게 해주는 프레임워크인 것이다. 
     
@@ -16,7 +15,7 @@ last_modified_at: 2021-01-01T01:00:00+09:00
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210101spring/spring-mvc-model2.png" alt=""> {% endraw %}
 - Spring MVC의 아키텍쳐([이미지 출처](https://www.edwith.org/boostcourse-web/lecture/16762))
 
-
+### Spring MVC 아키텍처 흐름
     클라이언트가 보내는 모든 요청을 Front Controller라는 Servlet Class가 받아서
     Controller Class(또는 handler Class)에게 위임한다. 
     (Front Controller는 딱 하나만 존재하며, 요청만 받고 실제 일은 처리하지 않음)
