@@ -7,9 +7,9 @@ last_modified_at: 2021-01-02T23:00:00+09:00
 
 - [출처](https://dzone.com/articles/spring-boot-vs-spring-mvc-vs-spring-how-do-they-compare)
 
-***learn what problems they solve, and where they're best applied.***<br> 
-***The most important thing that you will learn is that Spring, Spring MVC, and Spring Boot are not competing for the same space.***<br>
-***They solve different problems and they solve them very well.***
+***- learn what problems they solve, and where they're best applied.***<br> 
+***- The most important thing that you will learn is that Spring, Spring MVC, and Spring Boot are not competing for the same space.***<br>
+***- They solve different problems and they solve them very well.***
 
     Spring, Spring MVC, Spring Boot 는 중복되는 부분을 다루지 않고 각각의 모듈들은
     "서로 다른 문제들"을 해결하면서도 그 문제들을 매우 잘 해결한다.
@@ -94,6 +94,7 @@ last_modified_at: 2021-01-02T23:00:00+09:00
 ```
     
     위와 같이 종속성을 추가하면 아래와 같이 애플리케이션에 또 다른 종속성들이 자동으로 추가된다.
+    
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210102spring-springboot-springmvc/spring-boot-start-web.png" alt=""> {% endraw %}    
 
     종속성들은 다음과 같이 분류 될 수 있다. 
@@ -110,6 +111,7 @@ last_modified_at: 2021-01-02T23:00:00+09:00
     
 ### Spring Boot Starter 프로젝트 예시 리스트
     Spring Boot Starter Web 에서 살펴보았듯이 스타터 프로젝트들은 특정 애플리케이션 개발을 빠르게 시작할 수 있도록 도와 준다.
+    
 - spring-boot-starter-web-services: SOAP Web Services
 - spring-boot-starter-web: Web and RESTful applications
 - spring-boot-starter-test: Unit testing and Integration Testing
