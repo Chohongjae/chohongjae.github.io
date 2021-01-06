@@ -99,7 +99,54 @@ public class AnonymousClass {
 - 모든 멤버변수는 public static final 이어야 하며, 이를 생략할 수 있다.
 
 ### 인터페이스 레퍼런스를 통해 구현체를 사용하는 방법
-    dfd
+    우선 상속과 인터페이스의 다형성에 대해 비교해보자.
+    상속의 다형성의 기본 형태는 부모클래스 p = new 자식 클래스() 이다.
+    부모클래스 p가 참조할 클래스는 자신의 클래스보다 범위가 넓거나 같아야 한다.
+    즉 부모클래스 자신을 참조하거나 자신보다 범위가 넓은 자식 클래스를 참조해야하는 것이다.
+
+```java
+class Car {/*구현*/}
+
+class FireEngine extends Car {
+    public static void main(String[] args) {
+    
+        /*자기 자신을 참조하여 객체 생성*/
+        Car c = new Car();
+    
+        /*자기 자신보다 범위가 넓은 자식클래스를 참조하여 객체 생성*/
+        Car c1 = new FireEngine();
+        
+        /*형변환 하여 객체 생성*/
+        FireEngin f = (FireEngine)new Car(); // f는 형변환을 하지 않으면 에러가 난다.
+    
+        }
+}
+``` 
+
+    c1객체의 경우 FireEngine()을 참조하고 있지만 Car의 인스턴스이므로 Car클래스에 정의된 멤버만 사용이 가능하다.
+    f객체의 경우 Car()를 참조했지만 FireEngin()으로 형변환을 했으므로 FireEngin클래스의 메서드를 사용할 수 있다.
+    참고로 c는 Car의 인스턴스이고 c1은 Car의 인스턴스이자 FireEngine의 인스턴스이다.
+    
+    이제 인터페이스의 경우에서의 다형성을 보자
+
+```java
+public class InterfaceTestClass implements InterfaceTest1 , InterfaceTest2, InterfaceTest3{
+    public static void main(String[] args) {
+        InterfaceTest1 i1 = new InterfaceTestClass();
+        InterfaceTest2 i2 = new InterfaceTestClass();
+        InterfaceTest3 i3 = new InterfaceTestClass();
+    }
+}
+```
+
+    위에서 보다시피 InterfaceTest1,2,3는 인터페이스이다.
+    그리고 InterfaceTestClass는 클래스이다.
+    즉 인터페이스 i = new 클래스()와 같은 형태로 인터페이스 객체를 만들어 다형성을 사용할 수 있다.
+    아마 InterfaceTestClass에서는 InterfaceTest1,2,3의 모든 메서드들이 구현되어 있을 것이다. 
+    하지만 i1에서는 InterfaceTest1의 메서드만 사용가능하고
+    i2는 InterfaceTest2의 메서드만 사용이 가능하고
+    i3은 InterfaceTest3의 메서드만 사용이 가능하다.
+    
     
 ### 인터페이스 상속
     클래스끼리는 하나의 클래스만 상속이 되는 반면, 인터페이스끼리는 다중 상속이 가능하다.
@@ -406,7 +453,9 @@ public class PrivateStaticMethodTest implements Java9Interface {
    }
 }
 ```
-
     
-    
+    private static 메소드는 왜 사용할까?
+    static 메소드이지만 public static이랑은 달리 외부에 공개하고 싶지않은 static 메소드일 때
+    private static method를 사용하는 것 같다.
+    이와 달리 private method는 default method에서만 접근이 가능하다.
     
