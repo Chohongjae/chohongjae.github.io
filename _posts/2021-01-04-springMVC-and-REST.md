@@ -44,7 +44,7 @@ last_modified_at: 2021-01-04T01:00:00+09:00
 
 
 ### 결론
-    - 즉 @Controller 는 View Page를 반환하지만, @RestController는 객체(VO,DTO)를 반환하기만 하면,<br>
+    - 즉 @Controller 는 View Page를 반환하지만, @RestController는 객체(VO,DTO)를 반환하기만 하면,
      객체데이터는 MessageConverter에 의해서 application/json 형식의 HTTP ResponseBody에 직접 작성되게 된다.
 
 - [출처](https://www.genuitec.com/spring-frameworkrestcontroller-vs-controller/)
