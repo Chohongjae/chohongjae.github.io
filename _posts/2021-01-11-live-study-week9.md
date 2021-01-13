@@ -259,18 +259,20 @@ public List<String> readFile() {
 1. 업무에 특화한 처리인 경우(광범위하게 재사용할 것이 아닌 것)
 2. 프레임워크나 시스템에서 공통적인 예외 처리를 하는 경우
 
-    
-    이러한 조건을 만족하는 경우에 사용자 정의 예외를 도입하면 다음의 장점이 있다.
+```text
+이러한 조건을 만족하는 경우에 사용자 정의 예외를 도입하면 다음의 장점이 있다.
+```
 
 1. 자바의 표준 API에 있는 예외 클래스와 구별함으로써 예외를 포착하는 쪽은 많은 예외를 의식하지 않아도 된다.
 2. 업무 로직으로서 공통 처리를 만들 때 영향 범위를 국소화할 수 있다.
 
-    
-    사용자 정의 예외 클래스를 만드는 방법은 기존 표준 API에서 제공하는 예외를 상속하면 된다.
-    보통의 경우 Exception 또는 RuntimeException 클래스를 상속받아 구현하는데
-    보통 검사 예외인 경우 Exception 클래스를 상속받고,
-    실행시 예외인 경우 RuntimeException 클래스를 상속받아서 작성하면 된다.
-    
+```text
+사용자 정의 예외 클래스를 만드는 방법은 기존 표준 API에서 제공하는 예외를 상속하면 된다.
+보통의 경우 Exception 또는 RuntimeException 클래스를 상속받아 구현하는데
+보통 검사 예외인 경우 Exception 클래스를 상속받고,
+실행시 예외인 경우 RuntimeException 클래스를 상속받아서 작성하면 된다.
+```
+
 ```java
 public class CustomException extends Exception {
     public CustomException() {
