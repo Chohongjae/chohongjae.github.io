@@ -170,7 +170,6 @@ public class Test {
 ### 자바가 제공하는 예외 계층 구조
     
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/예외계층구조.png" alt=""> {% endraw %}
-- [이미지 출처](https://reference-m1.tistory.com/246)
     
     
     예외의 계층 구조를 알아보기 전에 우선 가장 상위에 있는 Throwable Class 에 대해 알아보자.
