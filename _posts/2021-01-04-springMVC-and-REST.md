@@ -27,7 +27,11 @@ last_modified_at: 2021-01-04T01:00:00+09:00
 
     Spring에는 백그라운드에 등록 된 HttpMessageConverters 목록이 있다.
     HTTPMessageConverter의 역할은 미리 정의 된 MIME 유형에 따라 클라이언트로부터 들어온 Request Body를
-    특정 클래스로 변환 한 다음 클라이언트에게 다시 Response body로 변환하는 것이다.
+    객체인지 문자열인지등에 따라 해당하는 JsonConverter 혹은 StringConverter로 특정 클래스로 변환하고
+    다시 컨트롤러의 처리결과를 객체인지 문자열인지등에 따라 각각에 맞는 Converter가 동작하고 변환해서
+    클라이언트에게 다시 HTTP Response body에 쓰여 전달되는 것이다.
+    (기본 객체처리 : MappingJackson2HttpMesssageConverter)
+    (기본 문자처리 : StringHttpMessageConverter)
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210101spring/spring-rest-controller.png" alt=""> {% endraw %}    
 
