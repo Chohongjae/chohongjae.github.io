@@ -77,6 +77,18 @@ import com.chohonjae.messenger.account.*; // 해당 패키지의 모든 클래�
     만약 import com.chohonjae.* 이렇게한다고해서 chohongjae 패키지 아래에 이쓴 모든 하위 패키지의 클래스까지 포함하는 것은 아니다.
     또한 자바에서 가장 많이 사용하는 java.lang 패키지에 대해서는 import 문을 사용하지 않아도 클래스 이름만으로 사용할 수 있도록 해주고 있다.
     
+```java
+package com.chongjae.javastudy;
+
+import static com.chohonjae.AccountController.staticMethod; // AccountController의 static 메소드인 staticMethod import 
+import static com.chohonjae.AccountController.*; // AccountController의 static 메소드 전부 import
+```
+
+    JDK 1.5부터는 정적(static) 메소드를 더욱 쉽게 사용하기 위해서 static import 를 지원한다.
+    그래서 위에 import 문과 같이 import 뒤에 static을 붙이면 해당 클래스의 static 메소드를 import 할 수 있다.    
+    주의해야 할 것은 같은 클래스 내에 동일한 이름의 메소드가 있으면 클래스 자신의 메소드가 우선된다.
+
+    
 ### 클래스패스
     클래스패스란 말 그대로 클래스를 찾기위한 경로이다. 
 
