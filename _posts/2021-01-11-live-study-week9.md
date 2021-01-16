@@ -191,7 +191,7 @@ public class Test {
     checked Exception 클래스들은 복구가 가능한 예외들이기 때문에
     반드시 catch 문으로 예외를 잡거나, throws로 예외 처리를 떠넘겨야 한다. 
     이렇게 예외를 처리하지 않으면 컴파일 단계에서 확인이 가능하기 때문에 컴파일 에러가 발생한다.
-    또한 checked Exception은 Exception 발생 시 트랜잭션을 rollback하지 않는다.
+    
     
     
 ### unchecked Exception
@@ -201,7 +201,6 @@ public class Test {
     Exception 발생 시 실행 단계에서 확인이 가능하다.
     
     즉 프로그램에 오류가 있을 때 발생하도록 의도된 것이다.
-    unchecked Exception Exception 발생시 트랜잭션을 rollback 한다.
 
     
 ### Exception과 Error의 차이는?
