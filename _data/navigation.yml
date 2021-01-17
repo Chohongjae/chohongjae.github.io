@@ -10,6 +10,8 @@ posts:
     children:
       - title: "Java"
         url: /categories/#java
+      - title: "Kotlin"
+          url: /categories/#kotlin
       - title: "Python"
         url: /categories/#python
   - title: LiveStudy
