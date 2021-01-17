@@ -53,7 +53,62 @@ try {
     자바 7에서 도입된 "다중 캐치"를 이용하여 위에서 작성한 것과 같이 복잡한 catch 블록의 작성을 공통으로 처리할 수 있다.
     위에서 작성한 어느 예외가 발생해도 동일한 catch 블록에서 오류 처리를 실시하게 된다.
 
+### try~catch-finally의 return 이해하기
+    try~catch~finally 구문에서 세 곳에 전부 return 이 있다면 어떻게 될까?
+    어떤 구문에 있는 값이 반환될까? 
 
+```java
+public class ReturnTest {
+    public String test() {
+        String word = "a";
+        try {
+            word = "try";
+            System.out.println(word);
+            return word;
+        } catch (Exception e) {
+            word = "catch";
+            System.out.println(word);
+            return word;
+        } finally {
+            word = "finally";
+            System.out.println(word);
+            return word;
+        }
+    }
+
+    public static void main(String[] args) {
+        ReturnTest returnTest = new ReturnTest();
+        System.out.println("최종 리턴값 : "+returnTest.test());
+    }
+}
+```
+
+    finally 블록에서 return을 주석처리한 결과를 보자
+    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/returnx.png" alt=""> {% endraw %}
+    
+    다음은 finally 블록의 return을 주석처리한 코드를 컴파일하고 디컴파일한 결과를 보자
+    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/decompile2.png" alt=""> {% endraw %}
+
+    두번쨰로 finally 블록의 return을 주석처리하지않은 결과를 보자
+    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/return.png" alt=""> {% endraw %}
+
+    마지막으로 finally 블록의 return을 주석처리하지않은 코드를 컴파일하고 디컴파일한 결과를 보자
+    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/decompile.png" alt=""> {% endraw %}
+    
+    위의 결과로 볼 수 있듯이 finally의 return을 주석처리하면 finally에서 word의 값을 변경하였다고 해도 try에서 return 값은
+    다른 레퍼런스로 복사가 된 상태이기 때문에 실제 return 값은 
+     
+```text
+또한    
+우선 finally 안에 return 이 있을 경우, return은 정상 종료를 의미하기 때문에
+try
+그래서 finally에서 return을 사용하면 안된다.
+```    
+    
 ### try~with~resources
     만약 프로그램을 작성하면서 중복으로 여러 리소스를 사용하는 경우 try~catch~finally 블록에서 상당히 많은 중복이 발생할 수 있다.
     예를 들어 아래의 코드를 보자.
