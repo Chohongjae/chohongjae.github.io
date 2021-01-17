@@ -85,29 +85,41 @@ public class ReturnTest {
 
     finally 블록에서 return을 주석처리한 결과를 보자
     
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/returnx.png" alt=""> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/comment-return.png" alt=""> {% endraw %}
     
     다음은 finally 블록의 return을 주석처리한 코드를 컴파일하고 디컴파일한 결과를 보자
     
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/decompile2.png" alt=""> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/decompile.png" alt=""> {% endraw %}
 
-    두번쨰로 finally 블록의 return을 주석처리하지않은 결과를 보자
-    
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/return.png" alt=""> {% endraw %}
+    위의 결과로 볼 수 있듯이 finally의 return을 주석처리하면 finally에서 word의 값을 변경하였다고 해도
+    try에서 return 값은 다른 레퍼런스로 복사가 된 상태이기 때문에 실제 return 값은 try가 된다.
+    (try -> 다른 레퍼런스 생성 및 return할 값 저장 -> finally -> return 값 반환)
+
+```text
+두번쨰로 finally 블록의 return을 주석처리하지않은 결과를 보자
+```
+ 
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/nocomment-return.png" alt=""> {% endraw %}
 
     마지막으로 finally 블록의 return을 주석처리하지않은 코드를 컴파일하고 디컴파일한 결과를 보자
     
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/decompile.png" alt=""> {% endraw %}
-    
-    위의 결과로 볼 수 있듯이 finally의 return을 주석처리하면 finally에서 word의 값을 변경하였다고 해도 try에서 return 값은
-    다른 레퍼런스로 복사가 된 상태이기 때문에 실제 return 값은 
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/decompile2.png" alt=""> {% endraw %}
+        
+    이처럼 finally에 return이 있으면 return 값은 finally에서 return한 값이 반환된다.
+    (try -> return할 값 변경 -> finally -> return할 값 변경 -> return 값 반환)
+
+```text
+하지만 아래와 같이 
+```
      
 ```text
-또한    
-우선 finally 안에 return 이 있을 경우, return은 정상 종료를 의미하기 때문에
+또한 finally 안에 return 이 있을 경우, return은 정상 종료를 의미하기 때문에 try에서 Exception이 발생해
+catch로 잡은 상태에서 catch로  
 try
 그래서 finally에서 return을 사용하면 안된다.
 ```    
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/exception.png" alt=""> {% endraw %}
     
 ### try~with~resources
     만약 프로그램을 작성하면서 중복으로 여러 리소스를 사용하는 경우 try~catch~finally 블록에서 상당히 많은 중복이 발생할 수 있다.
