@@ -30,13 +30,13 @@ last_modified_at: 2021-01-18T23:00:00+09:00
     Main Thread를 통해서 다른 자식 작업 스레드들이 생겨나고 병렬로 코드를 실행할 수 있다.
     또한 Main Thread는 다양한 종료 작업을 수행하기 때문에 종종 실행을 완료하는 마지막 스레드이기도 하다.
     
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek10/mainThread.png" alt=""> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/mainThread.png" alt=""> {% endraw %}
 - [이미지 출처](https://www.geeksforgeeks.org/main-thread-java/)
 
 
     Thread를 컨트롤하기 위해서는 Thread class에서 currentThread() 메소드를 호출함으로써 해당 Thread에 대한 참조를 얻어야 한다. 
       
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek10/threadName.png" alt=""> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/threadName.png" alt=""> {% endraw %}
 
     위의 코드를 보면 currentThread()를 호출하여 현재 스레드(코드상에서는 메인 스레드)에 대한 참조를 가져오고
     해당 스레드의 이름을 출력하고 setName()을 통하여 이름을 변경하고 변경이 되는 것을 확인할 수 있다.
