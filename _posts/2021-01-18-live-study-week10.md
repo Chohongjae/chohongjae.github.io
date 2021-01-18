@@ -50,7 +50,7 @@ Main Thread의 기본적인 우선 순위는 5이고 나머지 모든 자식 스
 아래의 예시를 보자.
 ```
 
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek10/childThread.png" alt=""> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/202101118ivestudyweek10/childThread.png" alt=""> {% endraw %}
 
     Main Thread는 JVM에 의해서 만들어지고 스레드가 만들어지면 프로그램의 main() 메소드의 존재를 확인하고 클래스를 초기화하는 작업을 한다. 
     
