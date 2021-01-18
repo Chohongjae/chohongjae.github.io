@@ -24,7 +24,7 @@ last_modified_at: 2021-01-18T23:00:00+09:00
 ### 쓰레드의 우선순위
 
 ### Main 쓰레드
-    모든 자바 프로그램이 시작되면 하나의 스레드가 즉시 실행되는데 이 스레드 프로그램이 시작할때 실행된는
+    모든 자바 프로그램이 시작되면 하나의 스레드가 즉시 실행되는데 이 스레드는 프로그램이 시작할때 실행되는
     단 하나의 스레드이기 때문에 보통 프로그램의 Main Thread라고 불린다.
     이러한 Main Thread 흐름 안에서 싱글 스레드가 아닌 멀티 스레드 어플리케이션은 필요에 따라
     Main Thread를 통해서 다른 자식 작업 스레드들이 생겨나고 병렬로 코드를 실행할 수 있다.
@@ -33,8 +33,9 @@ last_modified_at: 2021-01-18T23:00:00+09:00
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/mainThread.png" alt=""> {% endraw %}
 - [이미지 출처](https://www.geeksforgeeks.org/main-thread-java/)
 
-
-    Thread를 컨트롤하기 위해서는 Thread class에서 currentThread() 메소드를 호출함으로써 해당 Thread에 대한 참조를 얻어야 한다. 
+```text
+Thread를 컨트롤하기 위해서는 Thread class에서 currentThread() 메소드를 호출함으로써 해당 Thread에 대한 참조를 얻어야 한다.
+``` 
       
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/threadName.png" alt=""> {% endraw %}
 
