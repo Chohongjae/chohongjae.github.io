@@ -54,49 +54,27 @@ try {
     위에서 작성한 어느 예외가 발생해도 동일한 catch 블록에서 오류 처리를 실시하게 된다.
 
 ### try~catch-finally의 return 이해하기
-    try~catch~finally 구문에서 세 곳에 전부 return 이 있다면 어떻게 될까?
-    어떤 구문에 있는 값이 반환될까? 
-
-```java
-public class ReturnTest {
-    public String test() {
-        String word = "a";
-        try {
-            word = "try";
-            System.out.println(word);
-            return word;
-        } catch (Exception e) {
-            word = "catch";
-            System.out.println(word);
-            return word;
-        } finally {
-            word = "finally";
-            System.out.println(word);
-            return word;
-        }
-    }
-
-    public static void main(String[] args) {
-        ReturnTest returnTest = new ReturnTest();
-        System.out.println("최종 리턴값 : "+returnTest.test());
-    }
-}
-```
-
-    finally 블록에서 return을 주석처리한 결과를 보자
+    try~catch~finally 구문에서 return의 위치에 따라 결과가 달라질까? 어떤 구문에 있는 값이 반환될까?
+    
+    우선 try 와 catch 블록에서만 return이 위치한 코드와 결과를 보자.
     
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/comment-return.png" alt=""> {% endraw %}
     
-    다음은 finally 블록의 return을 주석처리한 코드를 컴파일하고 디컴파일한 결과를 보자
+    다음은 위의 코드를 컴파일하고 디컴파일한 결과를 보자
     
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/decompile.png" alt=""> {% endraw %}
 
-    위의 결과로 볼 수 있듯이 finally의 return을 주석처리하면 finally에서 word의 값을 변경하였다고 해도
-    try에서 return 값은 다른 레퍼런스로 복사가 된 상태이기 때문에 실제 return 값은 try가 된다.
-    (try -> 다른 레퍼런스 생성 및 return할 값 저장 -> finally -> return 값 반환)
+    위의 디컴파일한 결과를 보면 try 혹은 catch에만 return문이 존재하면 finally에서 word의 값을 변경하였다고 해도
+    try에서 return 값은 다른 임시변수에 담아 두었다가 finally 블록이 끝나고 해당 임시변수를 리턴함을 알 수 있다.
+    (try -> 다른 임시변수 생성 및 return할 값 저장 -> finally -> return 값 반환)
+    
+    만약 try에서 Exception이 발생하여 try 블록의 return문에 다다르지 못했다고 가정해도
+    디컴파일한 결과를 보면 catch 블록에서 word 값을 try 블록과 마찬가지로 임시변수에 담아두었다가
+    finally 블록이 끝나고 해당 임시변수를 리턴함을 알 수 있다.
+    그렇기때문에 사실 catch 문에서의 return 문은 try~catch 문 밖으로 빼는 것을 권장하고 있다.
 
 ```text
-두번쨰로 finally 블록의 return을 주석처리하지않은 결과를 보자
+두번째로 finally 블록에 return이 있을 때 결과를 보자
 ```
  
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/nocomment-return.png" alt=""> {% endraw %}
@@ -105,22 +83,44 @@ public class ReturnTest {
     
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/decompile2.png" alt=""> {% endraw %}
         
-    이처럼 finally에 return이 있으면 return 값은 finally에서 return한 값이 반환된다.
+    이처럼 finally에 return이 있으면 다른 블록의 return 절은 모두 사라지고 finally에서 값을 return하게 된다.
+    즉 return은 정상 종료를 의미하기 때문에 finally 블록안에서 return 문을 사용하게 된다면
+    try 혹은 catch 블록에 있는 return 문이 아니라 finally 블록 안의 return 문이 실행되게 되는 것이다.
     (try -> return할 값 변경 -> finally -> return할 값 변경 -> return 값 반환)
 
-```text
-하지만 아래와 같이 
+```text    
+또한 finally에 return문이 있으면 try에서 Exception이 발생해 catch로 잡은 상태에서
+Exception을 throw 해도 finally 구문을 거쳐 정상 종료를 의미하는 "return"을 만났기 때문에
+호출한 메소드로 에러가 전달되지 않는다.
+
+이러한 이유로 finally 블록에서는 return을 사용하지 않는 것을 권장한다.
 ```
-     
-```text
-또한 finally 안에 return 이 있을 경우, return은 정상 종료를 의미하기 때문에 try에서 Exception이 발생해
-catch로 잡은 상태에서 catch로  
-try
-그래서 finally에서 return을 사용하면 안된다.
-```    
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/exception.png" alt=""> {% endraw %}
+- catch 에서 발생시킨 Exception이 전달되지 않았음.
+
+
+### return 값의 자료형에 따라 결과가 달라질 수 있다.
+    위에서 finally 블록에 return이 없다면 finally 블록에서 값을 변경하여도 영향을 미치지 못한다고 하였다.
+    사실 이 것은 리턴시킬 값이 primitive인 경우에만 해당된다.
+    자료형이 primitive type인 경우에는 리턴값을 미시 복사할 때 "값의 복사"가 일어나서 원본을 return 하는 것이 아니라
+    값을 임시변수에 복사해두고 해당 값을 리턴하기 때문이다.
     
+    하지만 return 할 값이 Reference type 이라면 finally 블록에 return 이 있든 없든 상관없이
+    "메모리 주소의 복사, 레퍼런스에 대한 복사"가 일어나기 때문에 catch와 finally에서 값을 변경하면 값이 변경되게 된다.
+    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210111livestudyweek9/reference.png" alt=""> {% endraw %} 
+
+    추가적으로 한가지를 더 살펴보면, 위에서 말한대로 Reference type인 String은 finally 블록에서 값을 변경하면
+    변경된 값으로 return이 되어야 하는데 finally 블록에서 return이 없으면 try 구문에서 지정한 문자열이 리턴된다.
+    
+    이유는 String의 값을 바꿀 때는 실제 메모리 주소 안에 값을 바꾸는게 아니라 새로운 문자열을 가진
+    String 생성 후 해당 메모리 주소로 변수값을 바꿔주기 때문이다.
+
+
+**따라서 catch나 finally 블록 안에서는 return문을 지양하고 메서드 마지막 부분에서 return 하는 것을 권장한다.**
+
+
 ### try~with~resources
     만약 프로그램을 작성하면서 중복으로 여러 리소스를 사용하는 경우 try~catch~finally 블록에서 상당히 많은 중복이 발생할 수 있다.
     예를 들어 아래의 코드를 보자.
