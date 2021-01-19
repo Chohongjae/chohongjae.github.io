@@ -20,13 +20,51 @@ last_modified_at: 2021-01-18T23:00:00+09:00
 ### Thread 클래스와 Runnable 인터페이스
 
 ### 쓰레드의 상태
+    Thread는 상태 변화를 통해 아래 그림과 같은 LifeCycle을 갖는다.
 
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/state.png" alt=""> {% endraw %}
+- [이미지 출처](http://lazyrodi.github.io/2016/07/13/2016-07-13-java-thread/)
+
+1. New(created)
+    - 스레드 객체가 생성된 상태이다. / start() 호출 전 상태
+
+2. Runnable(waiting)
+    - 실행가능, 실행대기 상태로 운영체제는 인터럽트가 발생했을 때, Runnable 상태에 있는 Thread들 중에서
+    다음으로 CPU를 할당받아 실행될 Thread를 결정한 후 실행중인 Thread와 교체한다.
+    (CPU 할당 -> 디스패치, CPU 해제 -> 프리엠션)
+
+3. Running
+    - Thread가 운영체제로부터 CPU를 할당받아 실행되고 있는 상태
+    
+4. Blocked
+    - Waiting
+        - 다른 Thread가 통지할 때까지 기다리는 상태
+    - Timed_waiting
+        - 주어진 시간 동안 기다리는 상태
+    - Blocked
+        - 사용할 객체의 락이 풀릴 때 까지 기다리는 상태   
+    
+5. Dead(Terminated)
+    - Thread가 실행이 완료되어 메모리에서 사라진다.
+
+```text
+이처럼 프로그래밍 하면서 스레드의 상태를 알 수 있도록 해주는 메소드는 getState() 입니다. 
+getState()의 스레드 상태에 따른 Thread.State 열거 상수가 있는데 열거 상수는 다음의 표와 같습니다.
+``` 
+        
+    
 ### 쓰레드의 우선순위
     MultiThreading 환경에서 각각의 Thread는 우선순위를 가지고 있다.
-    이러한 Thread의 우선순위는 Thread Scheduler에게 Thread 실행의 순서를 결정하는 지표가 되는데
-    쉽게 말해서 Thread Scheduler는 RUNNABLE Queue에서 CPU 점유를 기다리고있는 Thread들중에서
-    가장 우선순위가 높은 스레드에게 CPU를 사용하도록 결정하는 것이다. 
-
+    이러한 Thread의 우선순위는 스케쥴링 알고리즘 중에서 "우선순위 방식, 우선순위 알고리즘"에서
+    Thread Scheduler에게 Thread 실행의 순서를 결정하는 지표가 된다.
+    
+    쉽게 말해서 Thread Scheduler는 RUNNABLE Queue에서 CPU 점유를 기다리고있는 Thread들 중에서
+    더 우선 순위가 높은 Thread가 생성되면 실행중인 Thread를 실행가능 상태로 만들고 가장 우선순위가 높은
+    Tread에게 CPU를 넘기는 작업을 한다.
+    
+    계속해서 우선순위가 낮아 CPU를 할당받지 못하는 Thread는 기아상태가 되는데, 일정시간 CPU를 할당받지
+    못하면 우선순위를 높여 실행될 수 있도록 만드는데 이러한 방법을 에이징이라고 한다.
+    
 
 ```text
 우선순위는 단순히 JVM혹은 유저로부터 할당된 숫자일뿐이다.
