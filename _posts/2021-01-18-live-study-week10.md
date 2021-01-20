@@ -20,10 +20,10 @@ last_modified_at: 2021-01-18T23:00:00+09:00
 ### Thread 클래스와 Runnable 인터페이스
 
 ### 쓰레드의 상태
-    Thread는 상태 변화를 통해 아래 그림과 같은 LifeCycle을 갖는다.
+    각각의 Thread는 상태 변화를 통해 아래 그림과 같은 LifeCycle을 갖고 LifeCycle안에서 Thread scheduler에 의해서 컨트롤된다. 
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/state.png" alt=""> {% endraw %}
-- [이미지 출처](http://lazyrodi.github.io/2016/07/13/2016-07-13-java-thread/)
+- [이미지 출처](https://javagoal.com/thread-life-cycle-in-java/)
 
 1. New(created)
     - 스레드 객체가 생성된 상태이다. / start() 호출 전 상태
