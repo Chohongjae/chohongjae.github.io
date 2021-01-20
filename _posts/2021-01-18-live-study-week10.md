@@ -17,40 +17,93 @@ last_modified_at: 2021-01-18T23:00:00+09:00
 - [동기화](#동기화)
 - [데드락](#데드락)
 
+### Thread란?
+    
+
 ### Thread 클래스와 Runnable 인터페이스
+    Thread 클래스는 java의 Multi Threading의 가장 중요한 클래스이다.
+    Thread는 Thread class 혹은 Runnalbe interface를 통하여 만들 수 있다.
+    
+### Thread 클래스
+    Thread class는 java.lang package에 있다.
+    Thread class는 Runnable interface를 구현하고 있고 우리는 Thread 클래스를 사용함으로써 Thread를 만들 수 있다.
+
+- start() : 스레드를 시작하기 위해 사용된다.
+- run() : 스레드의 액션을 수행한다. start()메소드를 호출할때 불리게된다.
+- sleep() 현재스레드를 특정시간동안 재우기위해서 사용ㄴ된다.
+- yield() The yield() method is used to give the hint to the thread scheduler. If the current thread is not doing anything important and any other threads need to be run, they should run. Otherwise, the current thread will continue to run. For more detail, you can visit here.
+- join()The join() method belongs to Thread class. The join() method is used when we want one thread to wait until another thread completes its execution. For more detail, you can visit here.
+- getName(), setName()This method returns the name of the thread. It is a public and final method. Its return type is String. For more detail, you can visit here.  his method is used to set the name of the thread. It is a public, final and synchronized method. Its return type is void it means it doesn’t return anything. For more detail, you can visit here.
+- isDaemon(), setDaemon()This method returns a boolean value either true or false. This method is used to check whether the thread is daemon thread or not. It is a public and final method. Its return type is boolean  This method is used to set a thread as daemon thread. You can mark any user thread as a daemon thread bypassing the value true (setDaemon(true)) in a parameter. If I have a Daemon thread and you can make it user thread bypassing the value false setDaemon(false))
+- getPriority(), setPriority()This method returns the priority of the thread. It is a public and final method. Its return type is int. This method is used to set the priority of a thread. Its return type is void it means it doesn’t return anything.
+
+
+        
+        
 
 ### 쓰레드의 상태
-    각각의 Thread는 상태 변화를 통해 아래 그림과 같은 LifeCycle을 갖고 LifeCycle안에서 Thread scheduler에 의해서 컨트롤된다. 
+    각각의 Thread는 Thread scheduler에 의한 상태 변화를 통해 아래 그림과 같은 LifeCycle을 갖는다. 
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/state.png" alt=""> {% endraw %}
 - [이미지 출처](https://javagoal.com/thread-life-cycle-in-java/)
 
-1. New(created)
-    - 스레드 객체가 생성된 상태이다. / start() 호출 전 상태
+### NEW
+    new 연산자를 통해 Thread 객체를 생성했을때 Thread가 갖는 첫번째 상태이다.
+    NEW 상태에서 Thread는 살아있다고 고려되지 않고, Thread의 start() 메소드의 호출이 있어야 NEW 상태를 벗어나
+    RUNNABLE 상태로 이동하며 살아있다고 판단된다.
+    한 번 NEW 상태를 벗어난 Thread는 다시 되돌아올 수 없다.
 
-2. Runnable(waiting)
-    - 실행가능, 실행대기 상태로 운영체제는 인터럽트가 발생했을 때, Runnable 상태에 있는 Thread들 중에서
-    다음으로 CPU를 할당받아 실행될 Thread를 결정한 후 실행중인 Thread와 교체한다.
-    (CPU 할당 -> 디스패치, CPU 해제 -> 프리엠션)
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/newState.png" alt=""> {% endraw %}
+- [이미지 출처](https://javagoal.com/thread-life-cycle-in-java/)    
 
-3. Running
-    - Thread가 운영체제로부터 CPU를 할당받아 실행되고 있는 상태
+### RUNNABLE
+    start() 메소드가 호출된 스레드는 NEW 상태에서 RUNNABLE 상태로 이동하게 된다.
+    Thread Scheduler는 RUNNABLE Thread Pool에 있는 Thread들을 대기시킬지 혹은 CPU 점유를 허락할지를 결정하게 된다.
+    RUNNABLE 상태에 있는 Thread들은 살아있다고 간주되고, CPU를 점유할 자격이 있기 때문에
+    RUNNABLE 이라는 범주안에서 CPU를 점유하면 실행 중, 그렇지 않으면 실행대기 상태로 나뉘게 된다. 
     
-4. Blocked
-    - Waiting
-        - 다른 Thread가 통지할 때까지 기다리는 상태
-    - Timed_waiting
-        - 주어진 시간 동안 기다리는 상태
-    - Blocked
-        - 사용할 객체의 락이 풀릴 때 까지 기다리는 상태   
+    Thread Scheduler는 각각의 Thread들에게 시간을 부여하고 해당 시간을 모두 사용하면 다른 Thread들이 CPU 사용에 대한 기회를 갖게된다. 
+    즉 시간을 모두 사용한 Thread는 RUNNABLE Pool에서 실행을 대기하게 되고 CPU를 점유한 Thread는 RUNNING 상태를 갖게 되는 것이다.
     
-5. Dead(Terminated)
-    - Thread가 실행이 완료되어 메모리에서 사라진다.
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/runnable.png" alt=""> {% endraw %}
+- [이미지 출처](https://javagoal.com/thread-life-cycle-in-java/)
+     
+### RUNNING
+    RUNNING 상태는 실제로 존재하는 것이 아니라 RUNNABLE 상태의 부분으로써 Runnable Thread pool에 있는
+    쓰레드가 CPU를 점유하였을때의 상태를 의미한다.
+    
+### TIMED WAITING
+    RUNNABLE 상태에 있는 Thread는 TIMED WATING 상태로 특정 시간동안 혹은 알람을 받을 때까지 대기할 수 있고,
+    그 동안 Thread Scheduler는 CPU를 점유할 준비가 되어있는 다른 Thread를 선택한다.
+    
+    Thread를 TIMED WAITING 상태로 만드는 메소드는 time 파라미터와 함께 sleep(time), wait(timeout),
+    join(timeout), parkNanos(), parkUntil() 등이 있다.
+    
+### WAITING    
+    어느 Thread가 WAITING 상태에 있음은, 다른 이유로 다른 Thread가 더 우선순위 있음을 의미한다.
+    wait(), join(), park()메소드등으로 Thread를 WAITING 상태로 만들 수 있고,
+    TIMED WAITING과의 차이점은 TIMED WAITING에 있는 Thread는 일정 시간이 지나면 다시 실행가능상태가 되지만 
+    WAITING에 있는 Thread는 영원히 대기하며 쓰레드를 깨우기 전까지 실행되지 않는다.
+    
+### BLOCKED
+    BLOCKED 상태에있는 Thread는 살아있다고 고려되지만 작업을 수행할 자격이 없이 Block된 상태를 말한다.
+    
+    예를 들어 어느한 Thread가 I/O 작업을 기다리고 있지만 I/O 작업이 이미 다른 스레드에 의해 사용되고 있을 때
+    해당 Thread는 사용되고 있는 I/O 작업을 기다려야하며 BLOCKED 상태에 있게 된다.
 
-```text
-이처럼 프로그래밍 하면서 스레드의 상태를 알 수 있도록 해주는 메소드는 getState() 입니다. 
-getState()의 스레드 상태에 따른 Thread.State 열거 상수가 있는데 열거 상수는 다음의 표와 같습니다.
-``` 
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/blocked.png" alt=""> {% endraw %}
+- [이미지 출처](https://javagoal.com/thread-life-cycle-in-java/)
+
+### TERMINATED
+    여러가지 이류로 Thread가 종료된, 죽은 상태를 의미한다.
+    해당 상태는 CPU를 점유할 수 없는데 작업 실행을 완료하였거나 segmentation fault 혹은 실행 중 오류등에 의해서 종료될 수 있다.
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/getState.png" alt=""> {% endraw %}
+- [이미지 출처](https://javagoal.com/thread-life-cycle-in-java/)
+
+
+    이처럼 getState() 메소드를 통해 Thread의 상태를 알 수 있다. 
+ 
         
     
 ### 쓰레드의 우선순위
@@ -121,3 +174,10 @@ currentThread() 메소드를 호출함으로써 해당 Thread에 대한 참조�
 ### 동기화
 
 ### 데드락
+    데드락은 두개 이상의 스레드가 서로를 기다리면서 무한정 Blocked 상태에 들어간 것을 말한다.
+    
+    
+
+
+### 참조
+- [https://javagoal.com/](https://javagoal.com/)
