@@ -172,12 +172,182 @@ currentThread() 메소드를 호출함으로써 해당 Thread에 대한 참조�
 
     
 ### 동기화
+    멀티스레드 환경에서는 스레드들이 병렬적으로 객체를 공유하며 작업하는 경우가 생기게 되는데, 이러한 형태의 통신은
+    매우 효율적이지만 Thread 간섭 및 메모리 일관성의 오류가 발생하게 된다.
+    만약 공유 객체가 immutable 하거나 모든 Thread들이 해당 자원을 읽기만 한다면 
+    공유 객체의 상태는 변경되지않기 때문에 동기화의 필요성을 느끼지 못하지만
+    Thread간 공유하는 객체가 서로의 작업에 영향을 미치는 경우에 우리는 공유 객체를 동시에 한 Thread만\
+    접근할 수 있도록 동기화해야 한다.
+    이를 방지하는 방법으로 자바는 동기화 메소드와 동기화 블록을 제공한다.
+    우선 왜 동기화가 필요한지 아래의 예시를 보자.
+    
+```java
+public class ThreadTest {
+    private int value = 0;
+
+    public void setValue(int value) {
+        this.value = value;
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {
+        }
+        System.out.println(Thread.currentThread().getName() + "의 Value 값은 " + this.value + "입니다.");
+
+    }
+
+    public static void main(String args[]) {
+        ThreadTest shareTread = new ThreadTest();
+        Thread thred1 = new Thread(() -> {
+            shareTread.setValue(100);
+
+        });
+
+        Thread thred2 = new Thread(() -> {
+            shareTread.setValue(10);
+        });
+        thred1.setName("스레드 1");
+        thred2.setName("스레드 2");
+        thred1.start();
+        thred2.start();
+    }
+}
+```
+    
+    위의 코드는 Thread들간 값을 공유하며 서로의 결과에 영향을 미쳐, 아래와 같이 의도한 결과와 다른 결과가 나옴을 확인할 수 있다.
+    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/sync.png" alt=""> {% endraw %}
+
+### 동기화 메소드
+    동기화 메소드는 Thread들간 간섭 및 메모리 일관성의 오류를 간단하게 해결해준다.
+    둘 이상의 Thread들에게 공유되는 자원이라면 동기화 메소드는 모든 읽기, 쓰기 행동을
+    해당 동기화 메소드 안에서 이루어지게 한다.
+    만약 한 Thread가 동기화 메소드를 호출하는 동안 다른 모든 Thread는 첫 번째 Thread가
+    해당 작업에 대해 완료할 때까지 기다려야 한다.
+    아래의 예시를 보자.
+
+```java
+public class ThreadTest {
+    public static void main(String[] args) {
+        Line obj = new Line();
+        
+        Train train1 = new Train(obj);
+        Train train2 = new Train(obj);
+        
+        train1.start();
+        train2.start();
+    }
+
+    static class Line {
+        synchronized public void getLine() {
+            for (int i = 0; i < 3; i++) {
+                System.out.println(i);
+                try {
+                    Thread.sleep(400);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }
+    }
+
+    static class Train extends Thread {
+        Line line;
+
+        Train(Line line) {
+            this.line = line;
+        }
+
+        @Override
+        public void run() {
+            line.getLine();
+        }
+    }
+}
+```    
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/syncMethod.png" alt=""> {% endraw %}
+
+    만약 동기화 메소드를 사용하지 않고 public void getLine() 만으로 이루어진 메소드를 호출하였다면 결과는
+    0
+    0
+    1
+    1
+    2
+    2 와 같은 식으로 나왔을 것이다.
+    
+### 동기화 블록
+    
+
+    
 
 ### 데드락
     데드락은 두개 이상의 스레드가 서로를 기다리면서 무한정 Blocked 상태에 들어간 것을 말한다.
     
-    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadLock.png" alt=""> {% endraw %}
+- [이미지 출처](https://www.fun-coding.org/thread.html)
 
+
+    자바 MultiThreading 프로그램에서는 위에서 설명한 synchronized 키워드가 lock, monitor 등을
+    기다리는 동안 thread를 block 하기 때문에 교착 상태가 발생할 수 있다.
+    아래의 예시를 보자.
+    
+```java
+public class ThreadTest {
+    public static Object Lock1 = new Object();
+    public static Object Lock2 = new Object();
+
+    public static void main(String args[]) {
+        ThreadDemo1 T1 = new ThreadDemo1();
+        ThreadDemo2 T2 = new ThreadDemo2();
+        T1.start();
+        T2.start();
+    }
+
+    private static class ThreadDemo1 extends Thread {
+        public void run() {
+            synchronized (Lock1) {
+                System.out.println("Thread 1: Holding lock 1...");
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                }
+                System.out.println("Thread 1: Waiting for lock 2...");
+
+                synchronized (Lock2) {
+                    System.out.println("Thread 1: Holding lock 1 & 2...");
+                }
+            }
+        }
+    }
+
+    private static class ThreadDemo2 extends Thread {
+        public void run() {
+            synchronized (Lock2) {
+                System.out.println("Thread 2: Holding lock 2...");
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                }
+                System.out.println("Thread 2: Waiting for lock 1...");
+
+                synchronized (Lock1) {
+                    System.out.println("Thread 2: Holding lock 1 & 2...");
+                }
+            }
+        }
+    }
+}
+```
+    
+    위와 같이 서로가 사용하는 자원에 접근하려하면 아래와 같이 교착상태가 발생하여 어느 Thread가 잠금을 해제 할 때까지 
+    더이상 프로그램이 진행되지 않음을 확인할 수 있다.
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadLock2.png" alt=""> {% endraw %}
+
+    
 
 ### 참조
 - [https://javagoal.com/](https://javagoal.com/)
+- [https://www.geeksforgeeks.org/method-block-synchronization-java/?ref=lbp](https://www.geeksforgeeks.org/method-block-synchronization-java/?ref=lbp)
