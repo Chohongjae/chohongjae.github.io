@@ -251,11 +251,10 @@ currentThread() 메소드를 호출함으로써 해당 Thread에 대한 참조�
 
     
 ### 동기화
-    멀티스레드 환경에서는 스레드들이 병렬적으로 객체를 공유하며 작업하는 경우가 생기게 되는데, 이러한 형태의 통신은
-    매우 효율적이지만 Thread 간섭 및 메모리 일관성의 오류가 발생하게 된다.
-    만약 공유 객체가 immutable 하거나 모든 Thread들이 해당 자원을 읽기만 한다면 
-    공유 객체의 상태는 변경되지않기 때문에 동기화의 필요성을 느끼지 못하지만
-    Thread간 공유하는 객체가 서로의 작업에 영향을 미치는 경우에 우리는 공유 객체를 동시에 한 Thread만 접근할 수 있도록 동기화해야 한다.
+    멀티스레드 환경에서는 스레드들이 병렬적으로 "객체"를 공유하며 작업하는 경우가 생기게 되는데,
+    이러한 형태의 통신은 매우 효율적이지만 Thread 간섭 및 메모리 일관성의 오류가 발생하게 된다.
+    만약 공유 객체가 immutable 하거나 모든 Thread들이 해당 자원을 읽기만 한다면 공유 객체의 상태는 변경되지않기 때문에 동기화의 필요성을 느끼지 못하지만
+    Thread간 공유하는 "객체"가 서로의 작업에 영향을 미치는 경우에 우리는 공유 객체를 동시에 한 Thread만 접근할 수 있도록 동기화해야 한다.
     이를 방지하는 방법으로 자바는 동기화 메소드와 동기화 블록을 제공한다.
     
     우선 왜 동기화가 필요한지 아래의 예시를 보자.
@@ -296,22 +295,24 @@ public class ThreadTest {
     아래와 같이 의도한 결과와 다른 결과가 나옴을 확인할 수 있다.
     
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/sync.png" alt=""> {% endraw %}
-
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/sync2.png" alt=""> {% endraw %}
-- [이미지 출처](https://javagoal.com/synchronization-in-java/)
+    
+    이렇게 Thread간 공유하는 객체에 접근을 동기화 하기 위해서 상호 배제를 이루어야 하는데
+    상호 배제는 자바에서 Thread 동기화를 이루는 가장 간단한 방법이다.
+    상호 배제를 구현하는 방법에는 2가지가 있는데 우선 Lock과 동기화 메소드에 대해 알아보자.
 
 ### 자바에서의 Lock
     자바에서 모든 객체는 Lock이라는 개념을 가지고 있다. 여러 Thread가 공유 자원에 접근할 때
     공유 자원에 대한 Lock을 획득하려하고, 어느 한 Thread가 Lock을 획득해 해당 자원에 대한
-    수행을 실행할 떄 나머지 Thread들은 해당 Thread가 작업을 완료해 Lock을 놓을때까지 대기하게 된다.  
+    수행을 실행할 떄 나머지 Thread들은 해당 Thread가 작업을 완료해 Lock을 놓을때까지 대기하게 된다.
+    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/sync2.png" alt=""> {% endraw %}
+- [이미지 출처](https://javagoal.com/synchronization-in-java/)  
     
 ### 동기화 메소드
-    상호 배제는 자바에서 Thread 동기화를 이루는 가장 간단한 방법이다.
-    상호 배제를 구현하는 방법에는 2가지가 있는데 우선 동기화 메소드에 대해 알아보자.
-    
     동기화 메소드는 Thread들간 간섭 및 메모리 일관성의 오류를 간단하게 해결해준다.
-    만약 Lock을 점유한 한 Thread가 동기화 메소드를 호출하는 동안 다른 모든 Thread는 첫 번째 Thread가 
-    해당 작업에 대해 완료해 Lock을 방출할 때까지 기다려야 한다.
+    만약 0.1초라도 먼저 Lock을 점유한(동기화 메소드에 접근한) 한 Thread가 동기화 메소드를 호출하는 동안
+    다른 모든 Thread는 첫 번째 Thread가 해당 작업에 대해 완료해 Lock을 방출할 때까지 공유 객체의 실행을 기다려야 한다.
+    
     아래의 예시를 보자.
 
 ```java
@@ -366,10 +367,76 @@ public class ThreadTest {
 ```
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/syncMethod2.png" alt=""> {% endraw %}
+
+    또한 동기화 메소드는 인스턴스 메소드 동기화와 스태틱 메소드 동기화 두 가지로 나뉜다.
+    
+    인스턴스 메소드의 동기화는 이 메소드를 가진 인스턴스(객체)를 기준으로 이루어진다.
+    그렇기 때문에 한 시점에 여러 Thread들 중 오직 하나의 Thread만이 동기화된 인스턴스 메소드를 실행할 수 있고
+    해당 객체의 메소드를 실행하려는 다른 Thread들은 대기하게 된다.
+    
+    따라서 만일 두개의 인스턴스(객체)가 있고, 각 Thread가 서로 다른 각각의 객체의 동기화된 메소드에 접근해도
+    병렬적으로 실행이 될 수 있는 것이다.
+    
+    아래의 예시를 보자.
+    
+```java
+public class ThreadTest {
+    public synchronized void getLine() {
+        for (int i = 0; i < 3; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(400);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        ThreadTest obj = new ThreadTest();
+        ThreadTest obj2 = new ThreadTest();
+
+
+        new Thread(obj::getLine).start();
+        new Thread(obj2::getLine).start();
+    }
+}
+```
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/instanceMethod.png" alt=""> {% endraw %}
+
+    스태틱 메소드 동기화 역시 선언문의 synchronized 키워드가 이 메소드의 동기화를 의미한다.
+    반면에 스태틱 메소드 동기화는 이 메소드를 가진 클래스의 "클래스 객체"를 기준으로 이루어진다.
+    JVM 안에 클래스 객체는 클래스 당 하나만 존재할 수 있으므로, 같은 클래스에 대해서는 오직 한 쓰레드만
+    동기화된 스태틱 메소드를 실행할 수 있다.
+    
+    아래의 예시를 보자.
+
+```java
+public class ThreadTest {
+    public static synchronized void getLine() {
+        for (int i = 0; i < 3; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(400);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new Thread(ThreadTest::getLine).start();
+        new Thread(ThreadTest::getLine).start();
+    }
+}
+```
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/syncMethod.png" alt=""> {% endraw %}
     
 ### 동기화 블록
     만약 우리가 코드의 메소드 전체가 아니라 메소드의 일부만 동기화하고 싶다면 동기화 블록을 사용할 수 있다.
-    동기화 메소드와 마찬가지로 공유되는 객체에 대한 동기화 블록은 어느 한 스레드만 동시에 들어올 수 있다.
+    인스턴스 동기화 메소드와 마찬가지로 공유되는 객체에 대한 동기화 블록은 어느 한 스레드만 동시에 들어올 수 있다.
      
     쉽게 말해서 동기화 블록 혹은 메소드에 어느 한 Thread가 들어오면, 해당 Thread는 Lock을 획득하게 되고,
     해당 동기화 블록, 메소드에 들어가려는 모든 Thread들은 해당 Thread의 작업이 "동기화 블록, 메소드에서" 완료되어 
@@ -377,11 +444,38 @@ public class ThreadTest {
     
     동기화 메소드와의 차이점은 메소드 전체가 아니라 일부 영역만 동기화할 수 있다는 것이다.
     
-    
+```java
+public void add(int value){
+    // 동기화 블록을 벗어난 영역
+    synchronized(this){
+       this.count += value;   
+    }
+}
+```
 
+    위의 코드처럼 메소드안에 특정 영역만 synchronized 키워드를 사용하여 동기화할 수 있다.
+    동기화 블록의 괄호 안에 this를 전달받고 있는데 this는 해당 메소드가 호출된 객체를 의미한다.
+    이 객체를 모니터 객체라고 하는데 this를 전달하면 인스턴스 동기화 메소드와 같이
+    여러 Thread에서 한 객체의 메소드에 한 Thread만 접근할 수 있다.
     
-###ㅇㅇ    
-    Cooperation (Inter-thread communication in java): Interthread communication in java is used to avoid polling and important when you want to develop an application where two or more threads exchange some information. Java provides three methods which are used to inter thread communication. Those methods are wait(), notify() and notifyAll() and these methods belong to object class.
+    즉 아래의 두 코드는 같은 기능을 수행한다.
+
+```java
+public class MyClass {
+
+    public synchronized void log1(String msg1, String msg2){
+       log.writeln(msg1);
+       log.writeln(msg2);
+    }
+
+    public void log2(String msg1, String msg2){
+       synchronized(this){
+          log.writeln(msg1);
+          log.writeln(msg2);
+       }
+    }
+}
+```
     
 ### 데드락
     데드락은 두개 이상의 스레드가 서로를 기다리면서 무한정 Blocked 상태에 들어간 것을 말한다.
@@ -452,8 +546,15 @@ public class ThreadTest {
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadLock2.png" alt=""> {% endraw %}
 
-### dddd
-    ddd    
+    터미널에서 Thread dump를 사용하여 데드락을 발견할 수 있는데 해당 구현은 확실하게 숙지하고 다시 작성하도록 하겠다.
+
+### 데드락 회피하는 방법
+    우리는 아래의 몇가지 방법을 통해 데드락을 피할 가능성을 높일 수 있다.
+    
+    1. 중첩 Lock을 피한다. : 데드락의 주요 이유로 여러 Thread에게 Lock을 주었을 때 발생하므로, 이미 한 Thread에 Lock
+    을 주었다면 다른 Thread들에게 Lock을 주는 것을 피해야 한다.
+    2. 불필요한 Lock을 피한다. : Lock을 필요로하는 Thread에게만 주어야지, 불필요하게 Lock을 제공해서는 안된다.
+    3. join() 메소드를 사용해 Thread의 수행을 잠시 중지시킨다.
 
 ### 참조
 - [https://javagoal.com/](https://javagoal.com/)
