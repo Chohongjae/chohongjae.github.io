@@ -483,7 +483,7 @@ public class MyClass {
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadLock.png" alt=""> {% endraw %}
 - [이미지 출처](https://www.fun-coding.org/thread.html)
 
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadLock3.png" alt=""> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadlock3.png" alt=""> {% endraw %}
 - [이미지 출처](https://www.geeksforgeeks.org/deadlock-in-java-multithreading/)
 
 
