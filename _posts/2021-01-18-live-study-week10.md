@@ -18,28 +18,107 @@ last_modified_at: 2021-01-18T23:00:00+09:00
 - [데드락](#데드락)
 
 ### Thread란?
+    Thread란 한마디로 "프로세스 내에서 실행되는 여러 흐름의 단위"라고 할 수 있다.
+    자바의 Thread는 JVM에 의해 스케줄되는 실행 단위 코드 블록이다.
+    JVM은 Thread는 몇 개 존재하는지, Thread로 실행되는 프로그램 코드의 메모리 위치는 어디인지
+    Thread의 상태는 무엇인지, Thread의 우선순위는 얼마인지등을 관리한다.
     
 
 ### Thread 클래스와 Runnable 인터페이스
-    Thread 클래스는 java의 Multi Threading의 가장 중요한 클래스이다.
-    Thread는 Thread class 혹은 Runnalbe interface를 통하여 만들 수 있다.
+    Multithreading을 사용하면 CPU의 사용을 최대한으로 끌어내어 프로그램의 여러 부분을 동시에 실행할 수 있다.
+    Thread는 Thread class의 상속 혹은 Runnalbe interface의 구현을 통하여 만들 수 있다.
     
 ### Thread 클래스
     Thread class는 java.lang package에 있다.
-    Thread class는 Runnable interface를 구현하고 있고 우리는 Thread 클래스를 사용함으로써 Thread를 만들 수 있다.
+    Thread class는 Runnable interface를 구현하고 있고, 우리가 Thread 클래스를 상속하여 클래스를 만들고
+    run() 메소드를 오버라이딩하여 Threading을 수행할 수 있다.
+    오버라이딩한 run() 메소드를 실행하기 위해서는 우리가 생성한 Thread 클래스의 start() 메소드를 호출하면 된다.
 
-- start() : 스레드를 시작하기 위해 사용된다.
-- run() : 스레드의 액션을 수행한다. start()메소드를 호출할때 불리게된다.
-- sleep() 현재스레드를 특정시간동안 재우기위해서 사용ㄴ된다.
-- yield() The yield() method is used to give the hint to the thread scheduler. If the current thread is not doing anything important and any other threads need to be run, they should run. Otherwise, the current thread will continue to run. For more detail, you can visit here.
-- join()The join() method belongs to Thread class. The join() method is used when we want one thread to wait until another thread completes its execution. For more detail, you can visit here.
-- getName(), setName()This method returns the name of the thread. It is a public and final method. Its return type is String. For more detail, you can visit here.  his method is used to set the name of the thread. It is a public, final and synchronized method. Its return type is void it means it doesn’t return anything. For more detail, you can visit here.
-- isDaemon(), setDaemon()This method returns a boolean value either true or false. This method is used to check whether the thread is daemon thread or not. It is a public and final method. Its return type is boolean  This method is used to set a thread as daemon thread. You can mark any user thread as a daemon thread bypassing the value true (setDaemon(true)) in a parameter. If I have a Daemon thread and you can make it user thread bypassing the value false setDaemon(false))
-- getPriority(), setPriority()This method returns the priority of the thread. It is a public and final method. Its return type is int. This method is used to set the priority of a thread. Its return type is void it means it doesn’t return anything.
+```java
+class MultithreadingDemo extends Thread {
+    
+    @Override 
+    public void run() 
+    { 
+        try { 
+            System.out.println ("Thread " + Thread.currentThread().getId() + " is running");
+        } catch (Exception e) {  
+            System.out.println ("Exception is caught"); 
+        } 
+    } 
+} 
+
+public class Multithread { 
+    public static void main(String[] args) { 
+        int n = 8; // Number of threads 
+        for (int i=0; i<n; i++) 
+        { 
+            MultithreadingDemo object = new MultithreadingDemo(); 
+            object.start(); 
+        } 
+    } 
+} 
+```
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/thread.png" alt=""> {% endraw %}
+
+### Runnable 인터페이스
+    Thread 클래스와 마찬가지로 Runnable 인터페이스를 구현한 클래스를 생성하고 
+    run() 메소드를 오버라이딩하고 start() 메소드를 호출하면 Threading을 수행할 수 있다.
+    
+    1. Runnable 인터페이스를 구현하는 클래스를 만든다.
+    2. run() 메소드를 구현한다.
+    3. 해당 클래스의 객체를 만든다.
+    4. Thread 클래스의 객체를 Runnable 인터페이스를 구현한 클래스를 생성자에 인자로해서 만든다.
+    5. 해당 객체의 start() 메소드를 호출한다.
+    
+    아래의 예시를 보자.
+    
+```java
+class MultithreadingDemo implements Runnable {
+
+    @Override
+    public void run() {
+        try {
+            System.out.println ("Thread " + Thread.currentThread().getId() + " is running");
+        } catch (Exception e) {
+            System.out.println ("Exception is caught");
+        }
+    }
+}
+
+public class ThreadTest {
+    public static void main(String[] args) {
+        int n = 8; // Number of threads
+        for (int i=0; i<n; i++)
+        {
+            Thread object = new Thread(new MultithreadingDemo());
+            object.start();
+        }
+    }
+}
+```    
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/runnableInterface.png" alt=""> {% endraw %}
 
 
-        
-        
+### Thread 클래스 VS Runnable 인터페이스
+    1. 자바는 다중 상속이 불가능하기 때문에 Thread 클래스를 상속하면 다른 클래스를 상속받을 수 없지만,
+    Runnable 인터페이스를 구현하면 다른 클래스를 상속받거나 구현할 수 있다.
+    
+    2. Thread 클래스를 상속받으면 Runnable 인터페이스에서 사용불가능한 yield(), interrupt() 등 
+    내장 메소드등을 사용할 수 있다. 
+
+### Thread 클래스의 메소드         
+    - start() : Thread를 시작하기 위해 사용된다.
+    - run() : Thread의 액션을 수행한다. start() 메소드를 호출할 때 불리게된다.
+    - sleep() 현재 Thread를 특정 시간동안 재우기 위해서 사용된다.
+    - yield(): Thread 스케쥴러에게 힌트를 주기 위해서 사용된다.
+    - join(): 다른 Thread의 작업이 끝날때까지 해당 Thread를 대기시키고 싶을 때 사용된다.
+    - getName(), setName(): thread의 네임을 가져오고 설정할 수 있다.
+    - isDaemon(), setDaemon(): thread가 데몬 Thread인지 아닌지를 확인하는 boolean 값과 데몬으로 설정할 수 있는 메소드이다.
+    - getPriority(), setPriority(): thread의 우선순위를 가져오고 우선순위를 변경할 수 있다.
+    
 
 ### 쓰레드의 상태
     각각의 Thread는 Thread scheduler에 의한 상태 변화를 통해 아래 그림과 같은 LifeCycle을 갖는다. 
@@ -176,9 +255,9 @@ currentThread() 메소드를 호출함으로써 해당 Thread에 대한 참조�
     매우 효율적이지만 Thread 간섭 및 메모리 일관성의 오류가 발생하게 된다.
     만약 공유 객체가 immutable 하거나 모든 Thread들이 해당 자원을 읽기만 한다면 
     공유 객체의 상태는 변경되지않기 때문에 동기화의 필요성을 느끼지 못하지만
-    Thread간 공유하는 객체가 서로의 작업에 영향을 미치는 경우에 우리는 공유 객체를 동시에 한 Thread만\
-    접근할 수 있도록 동기화해야 한다.
+    Thread간 공유하는 객체가 서로의 작업에 영향을 미치는 경우에 우리는 공유 객체를 동시에 한 Thread만 접근할 수 있도록 동기화해야 한다.
     이를 방지하는 방법으로 자바는 동기화 메소드와 동기화 블록을 제공한다.
+    
     우선 왜 동기화가 필요한지 아래의 예시를 보자.
     
 ```java
@@ -213,78 +292,105 @@ public class ThreadTest {
 }
 ```
     
-    위의 코드는 Thread들간 값을 공유하며 서로의 결과에 영향을 미쳐, 아래와 같이 의도한 결과와 다른 결과가 나옴을 확인할 수 있다.
+    위의 코드는 thread1의 value는 100을 의도하였지만 Thread들간 값을 공유하며 서로의 결과에 영향을 미쳐, 
+    아래와 같이 의도한 결과와 다른 결과가 나옴을 확인할 수 있다.
     
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/sync.png" alt=""> {% endraw %}
 
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/sync2.png" alt=""> {% endraw %}
+- [이미지 출처](https://javagoal.com/synchronization-in-java/)
+
+### 자바에서의 Lock
+    자바에서 모든 객체는 Lock이라는 개념을 가지고 있다. 여러 Thread가 공유 자원에 접근할 때
+    공유 자원에 대한 Lock을 획득하려하고, 어느 한 Thread가 Lock을 획득해 해당 자원에 대한
+    수행을 실행할 떄 나머지 Thread들은 해당 Thread가 작업을 완료해 Lock을 놓을때까지 대기하게 된다.  
+    
 ### 동기화 메소드
+    상호 배제는 자바에서 Thread 동기화를 이루는 가장 간단한 방법이다.
+    상호 배제를 구현하는 방법에는 2가지가 있는데 우선 동기화 메소드에 대해 알아보자.
+    
     동기화 메소드는 Thread들간 간섭 및 메모리 일관성의 오류를 간단하게 해결해준다.
-    둘 이상의 Thread들에게 공유되는 자원이라면 동기화 메소드는 모든 읽기, 쓰기 행동을
-    해당 동기화 메소드 안에서 이루어지게 한다.
-    만약 한 Thread가 동기화 메소드를 호출하는 동안 다른 모든 Thread는 첫 번째 Thread가
-    해당 작업에 대해 완료할 때까지 기다려야 한다.
+    만약 Lock을 점유한 한 Thread가 동기화 메소드를 호출하는 동안 다른 모든 Thread는 첫 번째 Thread가 
+    해당 작업에 대해 완료해 Lock을 방출할 때까지 기다려야 한다.
     아래의 예시를 보자.
 
 ```java
 public class ThreadTest {
-    public static void main(String[] args) {
-        Line obj = new Line();
-        
-        Train train1 = new Train(obj);
-        Train train2 = new Train(obj);
-        
-        train1.start();
-        train2.start();
-    }
-
-    static class Line {
-        synchronized public void getLine() {
-            for (int i = 0; i < 3; i++) {
-                System.out.println(i);
-                try {
-                    Thread.sleep(400);
-                } catch (Exception e) {
-                    System.out.println(e);
-                }
+    public synchronized void getLine() {
+        for (int i = 0; i < 3; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(400);
+            } catch (Exception e) {
+                System.out.println(e);
             }
         }
     }
 
-    static class Train extends Thread {
-        Line line;
+    public static void main(String[] args) {
+        ThreadTest obj = new ThreadTest();
 
-        Train(Line line) {
-            this.line = line;
-        }
-
-        @Override
-        public void run() {
-            line.getLine();
-        }
+        new Thread(obj::getLine).start();
+        new Thread(obj::getLine).start();
     }
 }
 ```    
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/syncMethod.png" alt=""> {% endraw %}
 
-    만약 동기화 메소드를 사용하지 않고 public void getLine() 만으로 이루어진 메소드를 호출하였다면 결과는
-    0
-    0
-    1
-    1
-    2
-    2 와 같은 식으로 나왔을 것이다.
+    위와 같이 함수에 synchronized를 걸면 그 함수가 포함된 해당 객체(this)에, 자신이 포함된 객체에 lock을 거는 것이다.
+    만약 동기화 메소드를 사용하지 않고 public void getLine() 만으로 이루어진 메소드를 호출하였다면 어떻게 되었을까?
+    
+    아래의 결과를 보자.
+    
+```java
+public class ThreadTest {
+    public void getLine() {
+        for (int i = 0; i < 3; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(400);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        ThreadTest obj = new ThreadTest();
+
+        new Thread(obj::getLine).start();
+        new Thread(obj::getLine).start();
+    }
+}
+```
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/syncMethod2.png" alt=""> {% endraw %}
     
 ### 동기화 블록
+    만약 우리가 코드의 메소드 전체가 아니라 메소드의 일부만 동기화하고 싶다면 동기화 블록을 사용할 수 있다.
+    동기화 메소드와 마찬가지로 공유되는 객체에 대한 동기화 블록은 어느 한 스레드만 동시에 들어올 수 있다.
+     
+    쉽게 말해서 동기화 블록 혹은 메소드에 어느 한 Thread가 들어오면, 해당 Thread는 Lock을 획득하게 되고,
+    해당 동기화 블록, 메소드에 들어가려는 모든 Thread들은 해당 Thread의 작업이 "동기화 블록, 메소드에서" 완료되어 
+    Lock의 소유를 포기할때까지 기다리게 되어 Race Condition을 예방할 수 있게 된다.
+    
+    동기화 메소드와의 차이점은 메소드 전체가 아니라 일부 영역만 동기화할 수 있다는 것이다.
+    
     
 
     
-
+###ㅇㅇ    
+    Cooperation (Inter-thread communication in java): Interthread communication in java is used to avoid polling and important when you want to develop an application where two or more threads exchange some information. Java provides three methods which are used to inter thread communication. Those methods are wait(), notify() and notifyAll() and these methods belong to object class.
+    
 ### 데드락
     데드락은 두개 이상의 스레드가 서로를 기다리면서 무한정 Blocked 상태에 들어간 것을 말한다.
     
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadLock.png" alt=""> {% endraw %}
 - [이미지 출처](https://www.fun-coding.org/thread.html)
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadLock3.png" alt=""> {% endraw %}
+- [이미지 출처](https://www.geeksforgeeks.org/deadlock-in-java-multithreading/)
 
 
     자바 MultiThreading 프로그램에서는 위에서 설명한 synchronized 키워드가 lock, monitor 등을
@@ -346,7 +452,8 @@ public class ThreadTest {
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118livestudyweek10/deadLock2.png" alt=""> {% endraw %}
 
-    
+### dddd
+    ddd    
 
 ### 참조
 - [https://javagoal.com/](https://javagoal.com/)
