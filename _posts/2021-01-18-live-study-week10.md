@@ -487,6 +487,7 @@ public class MyClass {
 - [이미지 출처](https://www.geeksforgeeks.org/deadlock-in-java-multithreading/)
 
 
+
     자바 MultiThreading 프로그램에서는 위에서 설명한 synchronized 키워드가 lock, monitor 등을
     기다리는 동안 thread를 block 하기 때문에 교착 상태가 발생할 수 있다.
     아래의 예시를 보자.
