@@ -17,15 +17,14 @@ last_modified_at: 2021-01-18T23:00:00+09:00
 ```text    
 Spring Container는 Spring Framework의 핵심이다.
 컨테이너는 객체(Bean)를 만들고, 연결하고, 구성하고, 생성부터 파괴까지 전체 수명주기를 관리하는 컨테이너, 통, 그릇이라고 볼 수 있다.
-DI(의존성 주입)는 IOC 컨테이너 안에 있는 빈들끼리만 가능하기 때문에 이러한 컨테이너를 통해
-시스템 전반에서 언제든지 빈에 대한 사용이 가능하다.
+DI(의존성 주입)는 IOC 컨테이너 안에 있는 빈들끼리만 가능하기 때문에 이러한 컨테이너를 통해 시스템 전반에서 언제든지 빈에 대한 사용이 가능하다.
 ```
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210118스프링컨테이너/container2.png" alt=""> {% endraw %}
 - [이미지 출처](https://private.tistory.com/39)
 
 ```text    
-이러한 스프링 컨테이너는 두가지 종류로 구분될 수 있다.
+이러한 스프링 컨테이너는 아래의 두가지 종류로 구분될 수 있다.
 ```    
     
     
@@ -58,9 +57,9 @@ context.getBeanDefinitionNames()
 - [이미지 출처](https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/beans.html)
 
 ```text    
-    위의 그림은 어떻게 스프링이 작동하는지에 대해 설명하고 있다.
-    우리가 작성한 POJO 클래스들이 Configuration Metadata와 결합되고,
-    다음으로 ApplicationContext가 생성되고 초기화되면서 실행가능한 스프링 어플리케이션은 구동되게 된다. 
+위의 그림은 어떻게 스프링이 작동하는지에 대해 설명하고 있다.
+우리가 작성한 POJO 클래스들이 Configuration Metadata와 결합되고,
+다음으로 ApplicationContext가 생성되고 초기화되면서 실행가능한 스프링 어플리케이션은 구동되게 된다. 
 ```
 
 ### Bean의 라이프사이클
