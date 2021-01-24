@@ -84,3 +84,5 @@ last_modified_at: 2021-01-24T23:00:00+09:00
     위의 사진과 같이 org.springframework.boot.autoconfigure.EnableAutoConfiguration 이라는 
     키 값으로 많은 환경설정 클래스 파일들이 @Configuration을 가지고 있고 스프링 빈 설정 파일로써 관리된다.
 
+### 참조
+- SpringBoot 퀵스타트
