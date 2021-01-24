@@ -16,6 +16,8 @@ last_modified_at: 2021-01-24T23:00:00+09:00
     이 객체는 싱글톤으로 생성하여 관리되는데 싱글톤이기 때문에 사용하는측에서 주입받는 빈은 모두 동일한 객체다.
     
     즉 스프링이 관리하는 객체로써 해당 빈들을 스프링이 주입해주기 때문에 우리는 불러서 사용만하면 되는 것이다.
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210124springBoot의자동설정/스프링 빈이란.png" alt=""> {% endraw %}
     
 ### @Configuration
     @Configuration 어노테이션이 달린 클래스 파일은 ComponentScan이 이루어질 때 
