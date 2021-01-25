@@ -30,23 +30,15 @@ sidebar:
 
 <h2>Skills</h2>
 
-<ul class="skill-list">
+<ul class="skill-list" style="color:gray; font-size: 80%;">
 	<li>Java</li>
-	{: style="color:gray; font-size: 80%;"}
 	<li>Python3</li>
-	{: style="color:gray; font-size: 80%;"}
 	<li>SpringBoot</li>
-	{: style="color:gray; font-size: 80%;"}
 	<li>Django</li>
-	{: style="color:gray; font-size: 80%;"}
 	<li>RDBMS</li>
-	{: style="color:gray; font-size: 80%;"}
 	<li>Docker</li>
-	{: style="color:gray; font-size: 80%;"}
 	<li>Redis</li>
-	{: style="color:gray; font-size: 80%;"}
 	<li>AWS</li>
-	{: style="color:gray; font-size: 80%;"}
 </ul>
 
 ### Relevant Activities
