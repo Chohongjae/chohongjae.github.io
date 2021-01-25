@@ -18,6 +18,7 @@ sidebar:
 
 ### Education
 - Seokyeong University (2013.03 ~ 2019.02)
+{: style="color:gray; font-size: 80%;"}
 
 ### Employment
 - Wemakeprice, Corp. Backend Developer (2020.06 ~ )
