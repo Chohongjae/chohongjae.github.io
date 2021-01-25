@@ -6,7 +6,7 @@ sidebar:
     nav: "posts"
 ---
 
-{% raw %} <img src="https://chohongjae.github.io/assets/img/about.jpeg" alt="" width="50%" height="40%" align="center"> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/about.jpeg" alt="" width="50%" height="30%" align="center"> {% endraw %}
 
 [Résumé](https://drive.google.com/file/d/13tFG1lesQQ5DiYpwLPiQkYoFm8a3rgT3/view?usp=sharing)
 
@@ -16,8 +16,8 @@ sidebar:
 
 ### Employment
 - Wemakeprice, Corp. Backend Developer (2020.06 ~ )
-- WIVLabs. AdTech developer (2018.09~2020.03)
-- WIVLabs. Intern developer (2018.03~2020.09)
+- WIVLabs. AdTech developer (2018.09 ~ 2020.03)
+- WIVLabs. Intern developer (2018.03 ~ 2018.09)
 
 <h2>Skills</h2>
 
