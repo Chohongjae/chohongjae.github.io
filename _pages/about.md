@@ -47,7 +47,7 @@ sidebar:
 
 <h2>Personal & Team Projects</h2>
 
-<ul>
+<ul style="color:gray; font-size: 80%;">
 	<li><a href="https://www.notion.so/c936d72ea9a2415ea8ca5395d8d8cf22">UrLink</a></li>
 	<li><a href="https://play.google.com/store/apps/details?id=com.scenetalker.yapp.scenetalker">Scene Talker</a></li>
 </ul>
