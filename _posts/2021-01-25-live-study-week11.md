@@ -11,11 +11,11 @@ last_modified_at: 2021-01-25T23:00:00+09:00
   
 
 ## 학습할 것
-- [enum 정의하는 방법](enum-정의하는-방법)
-- [enum이 제공하는 메소드 (values()와 valueOf())](느으아아앙)
-- [java.lang.Enum](java.lang.Enum)
-- [EnumSet](EnumSet)
-- [EnumMap](EnumMap)
+- [enum 정의하는 방법](#enum-정의하는-방법)
+- [enum이 제공하는 메소드 (values()와 valueOf())](#느으아아앙)
+- [java.lang.Enum](#java.lang.Enum)
+- [EnumSet](#EnumSet)
+- [EnumMap](#EnumMap)
 
 ### Enumeration이란?
     Enumerations은 프로그래밍언어에서 명명된 상수 그룹을 나타내는 목적으로 사용된다.
