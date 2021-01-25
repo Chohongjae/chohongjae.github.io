@@ -90,7 +90,7 @@ public class TaskTest {
     enum 타입은 클래스의 한 종류이기 때문에 다른 enum 값은 대입할 수 없어 타입 안전이 보장된다.
     또한 Enum 클래스에서 선언한 상수들은 클래스가 로드될 때 하나의 인스턴스로 생성되어 싱글톤 형태로 JVM에서 관리되게 된다.
     따라서 싱글톤으로 존재하는 것을 보장하기 때문에 우리는 enum 타입끼리의 비교는 
-    eqauls() 메소드 대신 == 메소드롤 객체 비교를 할 수 있다.
+    eqauls() 메소드 대신 == 를 사용해 객체 비교를 할 수 있다.
     
 
 ### enum이 제공하는 메소드 (values()와 valueOf())
@@ -334,7 +334,7 @@ public class Test {
     
     EnumMap의 순서는 열거형의 키를 기반으로 자연적인 순서(natural order)를 따른다.
     여기서 자연적인 순서라함은 enum HttpStatus에서 열거한 순서대로 나열한다는 것을 말한다.
-    예를 들어, enum HttpStatus에서 열거요소의 OK와 INTERNAL_SERVER_ERROR 바꿔놓으면를
+    예를 들어, enum HttpStatus에서 열거요소의 OK와 INTERNAL_SERVER_ERROR 바꿔놓으면
     모든 결과들은 이 둘의 순서가 뒤바뀌어서 출력될 것이다.
     
     따라서 put( ) 메소드를 이용해서 밸류값을 넣은 순서와 상관이 없다.
