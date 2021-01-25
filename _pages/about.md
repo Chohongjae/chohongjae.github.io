@@ -6,39 +6,38 @@ sidebar:
     nav: "posts"
 ---
 
-{% raw %} <img src="https://chohongjae.github.io/assets/img/about.jpeg" alt="" width="50%" height="50%" align="center"> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/about.jpeg" alt="" width="50%" height="40%" align="center"> {% endraw %}
 
 [Résumé](https://drive.google.com/file/d/13tFG1lesQQ5DiYpwLPiQkYoFm8a3rgT3/view?usp=sharing)
 
-### LeaderShip
-- LikeLion at Sungkonghoe Univ. (Club Representatives and Tutor)
-- Microsoft Student Partners (Student Evangelist and Team Leader)
 
-### Professional Experience
-- Tutoring QA internship (2017.07 ~ 2017.08)
-- Cooperative SONYEON (Founder and Cooperative Officer / 2015.07~2016.02)
+### Education
+- Seokyeong University (2013.03 ~ 2019.02)
+
+### Employment
+- Wemakeprice, Corp. Backend Developer (2020.06 ~ )
+- WIVLabs. AdTech developer (2018.09~2020.03)
+- WIVLabs. Intern developer (2018.03~2020.09)
 
 <h2>Skills</h2>
 
 <ul class="skill-list">
 	<li>Java</li>
-	<li>Ruby</li>
 	<li>Python3</li>
-	<li>HTML5</li>
-	<li>Javascript</li>
-	<li>Git</li>
-	<li>MySQL</li>
-	<li>Rails</li>
-	<li>Spring</li>
-	<li>Spring-Boot</li>
+	<li>SpringBoot</li>
+	<li>Django</li>
+	<li>RDBMS</li>
+	<li>Docker</li>
+	<li>Redis</li>
 	<li>AWS</li>
-	<li>Jpa/Hibernate</li>
 </ul>
 
-<h2>Personal Projects</h2>
+### Relevant Activities
+- [Yapp](http://yapp.co.kr/) 15th, 16th (Backend Developer)
+
+<h2>Personal & Team Projects</h2>
 
 <ul>
-	<li><a href="https://github.com/Sehun-Kim/skhu_plz_final">SkhuBee</a></li>
-	<li><a href="hhttps://github.com/Sehun-Kim/java-was">Web Application Server</a></li>
-	<li><a href="https://github.com/Sehun-Kim/IndianPoker_Spring-Boot">Web IndianPoker</a></li>
+	<li><a href="https://www.notion.so/c936d72ea9a2415ea8ca5395d8d8cf22">UrLink</a></li>
+	<li><a href="https://play.google.com/store/apps/details?id=com.scenetalker.yapp.scenetalker">Scene Talker</a></li>
 </ul>
