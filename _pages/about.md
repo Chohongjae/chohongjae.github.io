@@ -22,24 +22,36 @@ sidebar:
 
 ### Employment
 - Wemakeprice, Corp. Backend Developer (2020.06 ~ )
+{: style="color:gray; font-size: 80%;"}
 - WIVLabs. AdTech developer (2018.09 ~ 2020.03)
+{: style="color:gray; font-size: 80%;"}
 - WIVLabs. Intern developer (2018.03 ~ 2018.09)
+{: style="color:gray; font-size: 80%;"}
 
 <h2>Skills</h2>
 
 <ul class="skill-list">
 	<li>Java</li>
+	{: style="color:gray; font-size: 80%;"}
 	<li>Python3</li>
+	{: style="color:gray; font-size: 80%;"}
 	<li>SpringBoot</li>
+	{: style="color:gray; font-size: 80%;"}
 	<li>Django</li>
+	{: style="color:gray; font-size: 80%;"}
 	<li>RDBMS</li>
+	{: style="color:gray; font-size: 80%;"}
 	<li>Docker</li>
+	{: style="color:gray; font-size: 80%;"}
 	<li>Redis</li>
+	{: style="color:gray; font-size: 80%;"}
 	<li>AWS</li>
+	{: style="color:gray; font-size: 80%;"}
 </ul>
 
 ### Relevant Activities
 - [Yapp](http://yapp.co.kr/) 15th, 16th (Backend Developer)
+{: style="color:gray; font-size: 80%;"}
 
 <h2>Personal & Team Projects</h2>
 
