@@ -72,9 +72,9 @@ last_modified_at: 2021-01-24T23:00:00+09:00
     즉 파일 업로드가 동작하기 위해서는 DispatcherServlet으로부터 요청을 받을
     내가 만든 컨트롤러와 멀티파트 리졸버 객체를 매모리에 올리는 두 개의 객체 생성 과정이 필요한 것이다.
     
-    결국 @ComponentScan은 내가 만든 @Controller 혹은 @RestController가 붙은 객체를 메모리에 올리고
-    @EnableAutoConfiguration은 CommonsMultipartResolver 같이 스프링 부트가 지원하는 기능들을 제공하는
-    객체들을 메모리에 올리는 작업을 처리한다.
+    결국 먼저 @ComponentScan은 내가 만든 @Controller 혹은 @RestController가 붙은 객체를 메모리에 올리고
+    다음으로 @EnableAutoConfiguration은 spring-boot-autoconfigure-<버전>.jar의 spring.factories을
+    참고해서 CommonsMultipartResolver 같이 스프링 부트가 지원하는 기능들을 제공하는 객체들을 메모리에 올리는 작업을 처리한다.
     
 ```text
 @EnableAutoConfiguration 어노테이션은 spring-boot-autoconfigure-<버전>.jar 파일에 위치하는데,
