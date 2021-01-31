@@ -23,9 +23,9 @@ sidebar:
 ### Employment
 - Wemakeprice, Corp. Backend Developer (2020.06 ~ )
 {: style="color:gray; font-size: 80%;"}
-- WIVLabs. AdTech developer (2018.09 ~ 2020.03)
+- WIVLabs. AdTech Developer (2018.09 ~ 2020.03)
 {: style="color:gray; font-size: 80%;"}
-- WIVLabs. Intern developer (2018.03 ~ 2018.09)
+- WIVLabs. AdTech Developer(Intern) (2018.03 ~ 2018.09)
 {: style="color:gray; font-size: 80%;"}
 
 <h2>Skills</h2>
