@@ -14,6 +14,10 @@ posts:
         url: /categories/#kotlin
       - title: "Python"
         url: /categories/#python
+  - title: Algorithm
+    children:
+      - title: "Algorithm"
+        url: /categories/#Algorithm
   - title: LiveStudy
     children:
       - title: "LiveStudy"
