@@ -94,16 +94,16 @@ public @interface MyAnnotation {
 {: style="font-size: 80%;"}
 
 ## @documented
-    @Documented 어노테이션을 사용하는 클래스의 JavaDoc에 이 어노테이션의 존재를 표기하도록 지정한다.
-    즉 어노테이션은 기본적으로 JavaDoc에 포함되지 않기 때문에 @Doucmented가 달려있는 어노테이션을 사용하는 클래스의 
+    @Documented가 달린 어노테이션을 사용하는 elements의 JavaDoc에 이 어노테이션의 존재를 표기하도록 지정한다.
+    즉 어노테이션은 기본적으로 JavaDoc에 포함되지 않기 때문에 @Doucmented가 달려있는 어노테이션을 사용하는 elements의 
     JavaDoc을 생성할때 해당 어노테이션도 JavaDoc에 문서에 포함되어야함을 나타낸다.
 
-### @Doucmented가 달린 어노테이션을 사용하는 클래스의 @JavaDoc
+### @Doucmented가 달린 어노테이션을 사용하는 getName() 메소드의 @JavaDoc
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented3.png" width="50%" alt=""> {% endraw %}
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented5.png" width="95%" alt=""> {% endraw %}
 
-### @Doucmented가 달리지 않은 어노테이션을 사용하는 클래스의 @JavaDoc
+### @Doucmented가 달리지 않은 어노테이션을 사용하는 getName() 메소드의 @JavaDoc
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented.png" width="50%" alt=""> {% endraw %}
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented4.png" width="95%" alt=""> {% endraw %}     
