@@ -12,8 +12,8 @@ last_modified_at: 2021-02-01T23:00:00+09:00
 
 ## 학습할 것
 - [애노테이션 정의하는 방법](애노테이션-정의하는-방법)
-- [@retention](@retention)
-- [@target](@target)
+- [@Retention](@Retention)
+- [@Target](@Target)
 - [@documented](@documented)
 - [애노테이션 프로세서](애노테이션-프로세서)
 
@@ -38,7 +38,7 @@ last_modified_at: 2021-02-01T23:00:00+09:00
 ## 애노테이션 정의하는 방법
     
 
-## @retention
+## @Retention
     자바 컴파일러가 어노테이션 값들을 언제까지 유지할 것인지, 어느 시점까지 영향을 미칠 것인지를 결정한다.
     보통 어노테이션은 Runtime시에 많이 사용하므로 대부분의 어노테이션의 Retention 값은 RUNTIME으로 되어있다.
     즉 어노테이션의 LifeTime이다.
@@ -91,6 +91,7 @@ public @interface MyAnnotation {
 ```
 
 > 메소드에 어노테이션을 적용하고 바이트 코드 파일까지 어노테이션 정보를 유지하며 리플렉션을 이용해서 런타임에 어노테이션 정보를 얻어올 수 있다.
+{: style="font-size: 80%;"}
 
 ## @documented
     @Documented 어노테이션을 사용하는 클래스의 JavaDoc에 이 어노테이션의 존재를 표기하도록 지정한다.
@@ -100,12 +101,12 @@ public @interface MyAnnotation {
 ### @Doucmented가 달린 어노테이션을 사용하는 클래스의 @JavaDoc
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented3.png" width="50%" alt=""> {% endraw %}
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented5.png" width="85%" alt=""> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented5.png" width="95%" alt=""> {% endraw %}
 
 ### @Doucmented가 달리지 않은 어노테이션을 사용하는 클래스의 @JavaDoc
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented.png" width="50%" alt=""> {% endraw %}
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented4.png" width="85%" alt=""> {% endraw %}     
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/documented4.png" width="95%" alt=""> {% endraw %}     
     
 ## 애노테이션 프로세서
     
