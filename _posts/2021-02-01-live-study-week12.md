@@ -14,7 +14,7 @@ last_modified_at: 2021-02-01T23:00:00+09:00
 - [애노테이션 정의하는 방법](애노테이션-정의하는-방법)
 - [@Retention](@Retention)
 - [@Target](@Target)
-- [@documented](@documented)
+- [@Doucmented](@Doucmented)
 - [애노테이션 프로세서](애노테이션-프로세서)
 
 
@@ -93,7 +93,7 @@ public @interface MyAnnotation {
 > 메소드에 어노테이션을 적용하고 바이트 코드 파일까지 어노테이션 정보를 유지하며 리플렉션을 이용해서 런타임에 어노테이션 정보를 얻어올 수 있다.
 {: style="font-size: 80%;"}
 
-## @documented
+## @Doucmented
     @Documented가 달린 어노테이션을 사용하는 elements의 JavaDoc에 이 어노테이션의 존재를 표기하도록 지정한다.
     즉 어노테이션은 기본적으로 JavaDoc에 포함되지 않기 때문에 @Doucmented가 달려있는 어노테이션을 사용하는 elements의 
     JavaDoc을 생성할때 해당 어노테이션도 JavaDoc에 문서에 포함되어야함을 나타낸다.
