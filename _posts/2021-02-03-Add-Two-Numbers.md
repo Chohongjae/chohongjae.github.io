@@ -1,5 +1,5 @@
 ---
-title: "Add Two Numbers - leetcode"
+title: "Add Two Numbers"
 categories: 
   - Algorithm
 last_modified_at: 2021-02-03T23:00:00+09:00

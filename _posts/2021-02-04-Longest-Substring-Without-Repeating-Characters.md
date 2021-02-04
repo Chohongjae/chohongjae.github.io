@@ -1,5 +1,5 @@
 ---
-title: "Longest Substring Without Repeating Characters - leetcode"
+title: "Longest Substring Without Repeating Characters"
 categories: 
   - Algorithm
 last_modified_at: 2021-02-04T23:00:00+09:00
