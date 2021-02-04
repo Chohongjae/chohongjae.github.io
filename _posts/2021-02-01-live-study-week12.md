@@ -38,8 +38,7 @@ last_modified_at: 2021-02-01T23:00:00+09:00
 3. 마지막으로 실행시(런타임시)특정 기능을 실행하도록 정보를 제공등으로 사용할 수 있다.
 {: style="font-size: 80%;"}
 
-> 또한 어노테이션을 사용하면 AOP(Aspect Oriented Programming)을 편리하게 구성할 수 있다.<br>
-아래의 어노테이션을 사용하는 예시를 보자.
+아래의 코드는 우리가 자주 사용하는 어노테이션들이다.
 
 ```java
 public class Person {
