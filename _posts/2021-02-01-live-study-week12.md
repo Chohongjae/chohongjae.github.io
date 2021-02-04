@@ -27,7 +27,6 @@ last_modified_at: 2021-02-01T23:00:00+09:00
     빌트인으로 자바에서 아래와 같은 어노테이션을 제공한다.
 
 1. 코드에 적용되는 어노테이션(ex: @Override, @Deprecated)
-{: style="font-size: 80%;"}
 2. 다른 어노테이션에 적용되는 Meta 어노테이션(ex: @Retention, @Documented, @Target)
 {: style="font-size: 80%;"}
     
@@ -35,13 +34,11 @@ last_modified_at: 2021-02-01T23:00:00+09:00
     이러한 어노테이션은 크게 세 가지 종류로 활용될 수 있다.
 
 1. 컴파일러에게 코드 작성 문법 에러를 체크하도록 정보 제공
-{: style="font-size: 80%;"}
 2. 소프트웨어 개발툴이 빌드나 배치시 코드를 자동으로 생성할 수 있도록 정보 제공
-{: style="font-size: 80%;"}
 3. 마지막으로 실행시(런타임시)특정 기능을 실행하도록 정보를 제공등으로 사용할 수 있다.
 {: style="font-size: 80%;"}
 
-또한 어노테이션을 사용하면 AOP(Aspect Oriented Programming)을 편리하게 구성할 수 있다.<br>
+> 또한 어노테이션을 사용하면 AOP(Aspect Oriented Programming)을 편리하게 구성할 수 있다.<br>
 아래의 어노테이션을 사용하는 예시를 보자.
 
 ```java
@@ -172,7 +169,9 @@ public class Person {
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/annotest3.png" width="85%" alt=""> {% endraw %}
 
-    리플렉션을 사용하여 Person 클래스의 getName 이름을 가진 메소드를 가져왔고, 해당 메소드에 달린 어노테이션들을 모두 가져와 출력하였다.
+    리플렉션을 사용하여 Person 클래스의 getName 이름을 가진 메소드를 가져왔고,
+    해당 메소드에 달린 어노테이션들을 모두 가져와 출력하였다.
+    
     또한 getName 이름을 가진 메소드에 달린 AnnotationTest 어노테이션을 가져왔고(없으면 null),
     value 엘리먼트와 test 엘리먼트를 출력하였다.
 
