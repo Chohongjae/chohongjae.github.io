@@ -14,7 +14,7 @@ last_modified_at: 2021-02-01T23:00:00+09:00
 - [애노테이션 정의하는 방법](#애노테이션-정의하는-방법)
 - [@Retention](#@Retention)
 - [@Target](#@Target)
-- [@Doucmented](#@Doucmented)
+- [@Documented](#@Doucmented)
 - [애노테이션 프로세서](#애노테이션-프로세서)
 
 
