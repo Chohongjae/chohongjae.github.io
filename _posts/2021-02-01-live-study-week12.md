@@ -133,7 +133,11 @@ public @interface ValueAnnotation {
 @ValueAnnotation(value = {1, 2}, element1 = 5)
 public class Test {
 }
-```    
+```   
+
+- 어노테이션에 값을 전달할 때 런타임중에 알아내어야 하는 값은 들어갈 수 없다.
+ 컴파일러 수준에서 해석되는 완전 정적인 값만 들어가야한다.
+{: style="font-size: 80%;"}
 
 ## 런타임 시 어노테이션 정보 사용하기
     어노테이션은 단지 주석일 뿐이라 그 자체로는 아무런 동작을 하지 않는다.
@@ -182,22 +186,24 @@ public class Person {
     Runtime시에 사용하기 위한 용도로 만들어 진다.
     그래서 대부분의 어노테이션의 Retention 값은 RUNTIME으로 되어있다.
     
+- 만약 리텐션을 어노테이션에 작성하지 않는다면 어노테이션은 CLASS 시점까지만 영향을 끼친다. (the retention policy defaults to * {@code RetentionPolicy.CLASS}.)
+{: style="font-size: 80%;"}
+    
 ### SOURCE
 - 소스상에서만 어노테이션 정보를 유지한다.
-{: style="font-size: 80%;"}
 - 소스 코드를 분석할 때만 의미가 있으며, 바이트 코드 파일에는 정보가 남지 않는다.
+- 따라서 바이트 코드 파일에 정보가 남아있지 않으므로 Retention을 SOURCE로 지정하는 것은 정말 "주석의 의미"로 어노테이션을 사용하는 것이 된다. 
 {: style="font-size: 80%;"}
 
 ### CLASS
 - 바이트 코드 파일까지 어노테이션 정보를 유지한다.
-{: style="font-size: 80%;"}
 - 하지만 리플렉션을 이용해서 어노테이션 정보를 얻을 수는 없다.
+- 이런 경우에는 리플렉션이 아니라 "바이트 코드를 읽어들이는 기술"을 통해 값을 추출해서 기능을 구현하는 것은 가능하다. 
 {: style="font-size: 80%;"}
 
 ### RUNTIME
 - 바이트 코드 파일까지 어노테이션 정보를 유지한다.
-{: style="font-size: 80%;"}
-- 리플렉션을 이용해서 런타임에 어노테이션 정보를 얻어올 수 있다.
+- 리플렉션을 이용해서 런타임에 어노테이션 정보를 얻어오고 기능을 구현할 수 있다.
 {: style="font-size: 80%;"}
 
 {% raw %} <img src="https://chohongjae.github.io/assets/img/20210202livestudyweek12/retention.png" width="85%" alt=""> {% endraw %}
@@ -338,6 +344,10 @@ public class Person {
     
     하지만 공개된 API가 아닌 컴파일러 내부 클래스를 사용하여 기존의 소스 코드를 조작하는 방식이기 때문에 해킹이라고 불리지만
     그럼에도 불구하고 엄청난 편리한 때문에 널리 쓰이고 있으며, 대안이 몇가지 있지만 롬복의 모든 기능과 편의성을 대체하지는 못하고 있다.
+    
+- 리플렉션을 이용해서 값을 추출하고 기능을 구현한다고 해서 어노테이션 프로세서를 사용하는 것이 아니라,
+AbstractProcessor를 필수로 상속받아서 프로세서를 구현하고 자바 코드를 인풋으로 받아 아웃풋으로 코드 생성, 파일 생성등의 작업을 하는 것을
+어노테이션 프로세싱이라고 한다. 
     
     
     
