@@ -1,5 +1,5 @@
 ---
-title: "nested class의 종류"
+title: "nested class의 종류 - 작성중"
 categories: 
   - java
 last_modified_at: 2020-12-28T01:00:00+09:00
@@ -12,7 +12,7 @@ last_modified_at: 2020-12-28T01:00:00+09:00
 ### static inner 멤버 클래스
     ㅇㄹㅇ
     
-### nonstatic inner 멤버 클래스
+### nonstatic inner 멤버 클래스 
     ㅇㄹㅇㅇ
     
 ### 익명 클래스
