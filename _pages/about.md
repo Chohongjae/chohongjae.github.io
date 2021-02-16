@@ -12,9 +12,10 @@ sidebar:
 **Move Fast and Break Things**
 {: style="text-align: center;"}
 
-학부 4학년부터 기업에서 인턴으로 실무경험을 쌓았습니다.<br> 
-지속적으로 새로운 기술을 습득하고 적용하는 것을 좋아하며 기술의 본질과 사용하는 이유를 이해하고 사용하려고 합니다.<br>
-백엔드 개발자로서 일하고 있으며 사람들과 커뮤니케이션하며 일하는 것을 좋아합니다.
+학부 4학년부터 기업에서 인턴으로 실무경험을 쌓았습니다.<br>
+새로운 기술을 습득하고 적용하는 것을 좋아하며 기술의 본질과<br.
+사용하는 이유를 이해하고 사용하려고 합니다.<br>
+사람들과 커뮤니케이션하며 일하는 것을 좋아하는 백엔드 개발자입니다.
 {: style="color:gray; font-size: 80%; text-align: center;"}
 
 - [Résumé](https://drive.google.com/file/d/13tFG1lesQQ5DiYpwLPiQkYoFm8a3rgT3/view?usp=sharing)
@@ -34,11 +35,11 @@ sidebar:
 <h2>Skills</h2>
 
 <ul class="skill-list" style="color:gray; font-size: 80%;">
-	<li>Java</li>
-	<li>Python3</li>
+	<li>Java(JDK11)</li>
+	<li>Python(3.7.6)</li>
 	<li>SpringBoot</li>
 	<li>Django</li>
-	<li>RDBMS</li>
+	<li>Mysql</li>
 	<li>Docker</li>
 	<li>Redis</li>
 	<li>AWS</li>
