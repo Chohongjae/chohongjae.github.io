@@ -28,3 +28,9 @@ posts:
         url: /categories/#spring
       - title: "Django"
         url: /categories/#django
+  - title: CS
+    children:
+      - title: "DB"
+        url: /categories/#db
+      - title: "etc"
+        url: /categories/#etc
