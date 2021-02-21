@@ -32,5 +32,5 @@ posts:
     children:
       - title: "DB"
         url: /categories/#db
-      - title: "etc"
+      - title: "ETC"
         url: /categories/#etc
