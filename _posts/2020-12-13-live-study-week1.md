@@ -32,7 +32,6 @@ JVM이 OS 의존적인 부분을 대신 처리하고, "자바 바이트코드를
 {: style="font-size: 80%;"}    
            
 ### 정리
-- 즉 소스파일(*.java)은 컴파일러(javac)에 의해 중간단계 언어(바이트 코드)로 컴파일되고, JVM이 이러한 컴파일된 자바 클래스 파일(*.class)을 OS에 맞는 기계어로 변환(인터프리터와 JIT 컴파일러를 통해)하여 실행하는 것이다.
 1) Java 클래스 파일(.class)을 로드하고
 2) 바이트 코드를 해석하며
 3) 메모리 등의 자원을 할당하고 관리하며 정보를 처리하는 프로그램
@@ -42,7 +41,7 @@ JVM이 OS 의존적인 부분을 대신 처리하고, "자바 바이트코드를
 
 ### 바이너리 코드란 무엇인가
 - 바이너리 코드는 컴퓨터가 인식할 수 있는 0과 1로 구성된 이진코드를 의미한다.
-  {: style="font-size: 80%;"}
+{: style="font-size: 80%;"}
     
 ### 기계어란?
 - 기계어는 "CPU가 직접 해독하고 실행할 수 있는" 비트 단위(0과 1로 이루어짐)로 쓰인 컴퓨터 언어이다.
@@ -57,16 +56,21 @@ JVM이 OS 의존적인 부분을 대신 처리하고, "자바 바이트코드를
 - "CPU"가 이해할 수 있는 언어가 "바이너리 코드"라면, "바이트 코드"는 "가상 머신"이 이해할 수 있는 바이너리 코드이다.
 - 즉 고급언어로 작성된 "소스코드"를 가상 머신이 이해할 수 있는 중간 코드로 컴파일 되어 어떤 플렛폼에도 종속되지 않게 실행될 수 있는 "가상 머신용 기계어 코드"이다.
 - 바이트 코드는 다시 실시간 번역기 또는 저스트 인 타임(just-in-time, JIT) 컴파일러에 의해 네이티브 코드로 변환된다.
-  {: style="font-size: 80%;"}
+{: style="font-size: 80%;"}
    
 ### 컴파일 하는 방법
 - 컴파일이란 우리의 언어는 컴퓨터가 이해하지 못하므로 컴퓨터가 이해할 수 있도록 "통역"하는 작업을 말한다.
 1. 자바 컴파일러는 자바 개발 키트(JDK)에 포함되어 있기 때문에 작성된 코드를 컴파일해 바이트코드를 생성하기 위해선 우선 JDK가 필요하다.
 2. 자바 언어 사양(JLS)을 충족하는 자바 소스코드(*.java) 파일을 작성한다.
 3. 자바 컴파일러(javac.exe)를 통해 자바 소스코드(.java)를 자바 가상 머신 사양(JVMS)을 충족하는 바이트코드(.class)로 컴파일 한다.
-    - javac Test.java
-4. *.class 파일이 생성된 것을 확인 할 수 있다.
-    - Test.class
+    
+
+    javac Test.java
+4. *.class 파일이 생성된 것을 확인 할 수 있다. 
+
+
+
+    Test.class
 {: style="font-size: 80%;"}    
   
 ### 실행하는 방법
@@ -93,10 +97,11 @@ JVM이 OS 의존적인 부분을 대신 처리하고, "자바 바이트코드를
 따라서, JIT 컴파일러를 사용하는 JVM들은 내부적으로 해당 메서드가 얼마나 자주 수행되는지 체크하고, 일정 정도를 넘을 때에만 컴파일을 수행한다.
 {: style="font-size: 80%;"}
 
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/JIT2.png" alt=""> {% endraw %}
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/JIT2.png" height="70%" alt=""> {% endraw %}
 
 ## JVM 구성 요소
 - JVM은 크게 4가지 구성요소로 이루어져 있다.
+{: style="font-size: 80%;"}
     
 ### 클래스 로더 시스템
 - 우리가 컴파일한 바이트코드(*.class)를 실행시점(RunTime)에 읽어들여서 메모리(Runtime Data Area)에 적절하게 배치하는 것이 클래스로더의 역할이다.
@@ -129,10 +134,12 @@ JVM이 OS 의존적인 부분을 대신 처리하고, "자바 바이트코드를
 
 ### 4-1. JNI(Java Native Interface)
 - 자바 애플리케이션에서 C, C++, 어셈블리로 작성된 Native 키워드를 사용한 함수를 사용할 수 있는 방법 제공
+{: style="font-size: 80%;"}
 ### 4-2. 네이티브 메소드 라이브러리
 - C, C++로 작성 된 라이브러리
-
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/JVM.png" alt=""> {% endraw %}
+{: style="font-size: 80%;"}
+  
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/JVM.png" height="70%" alt=""> {% endraw %}
 
 ### JRE란
 - JRE(Java Runtime Enviroment)란 컴파일된 자바 프로그램을 실행(JRE의 목적)시킬 수 있는 자바 실행 환경이다.
@@ -140,7 +147,7 @@ JVM이 OS 의존적인 부분을 대신 처리하고, "자바 바이트코드를
 - JRE는 *.class 파일을 JVM으로 로딩시키는 역할을 하고, JVM은 *.class 파일을 해석해 실행할 수 있는 상태로 만든다.
 {: style="font-size: 80%;"}
 
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/jre.png" alt=""> {% endraw %}    
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/jre.png" height="70%" alt=""> {% endraw %}    
 
 ### JDK란
 - JDK(Java Development kit)란 자바 애플리케이션 개발 환경이다. 
@@ -148,7 +155,7 @@ JVM이 OS 의존적인 부분을 대신 처리하고, "자바 바이트코드를
 - JDK를 설치하면 JRE도 같이 설치가 되기 때문에, JDK = JRE + @ 이다.
 {: style="font-size: 80%;"}
     
-{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/jdk.png" alt=""> {% endraw %}        
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/jdk.png" height="70%" alt=""> {% endraw %}        
 
 
 # 전체적인 흐름
@@ -156,4 +163,4 @@ JVM이 OS 의존적인 부분을 대신 처리하고, "자바 바이트코드를
 - JRE가 바이트 코드를 JVM으로 로딩하고, JVM의 Class Loader 가 Runtime Data Area 에 클래스 파일을 적재 시킨다.
 - 실행엔진이 자바 메모리에 적재된 클래스 들을 기계어로 변환해 명령어 단위로 실행하고
 - Garbage Collector 는 Heap 영역에 적재된 객체들 중에서 참조되지 않은 객체를 제거한다.
-  {: style="font-size: 80%;"}
+{: style="font-size: 80%;"}
