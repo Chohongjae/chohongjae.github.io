@@ -165,7 +165,43 @@ last_modified_at: 2020-12-13T22:00:00+09:00
 {: style="font-size: 80%;"}
   
 ### GC
+- C/C++ 프로그래밍을 할 때 메모리 누수(Memory Leak)를 막기 위해 객체를 생성한 후 사용자하지 않는 객체의 메모리를 프로그래머가 직접 해제 해주어야 했다.
+- 하지만 JVM에서 GC의 스케줄링을 담당함으로서 Java 프로그래머들에게는 메모리를 관리해야하는 부담을 줄여주게된다. 즉, 일반적인 개발 작업간에는 메모리 할당/해제를 직접 프로그래밍하지 않아도 된다는 이야기다.
+- GC에 대해서 알아보기 전에 'stop-the-world'라는 용어를 알아야한다. 
+  - 'stop-the-world'란, GC를 실행하기 위해 JVM이 애플리케이션 실행을 멈추는 것으로 어떤 GC 알고리즘을 사용하더라도 'stop-the-world'는 발생하게 되는데, 대개의 경우 GC 튜닝은 이 'stop-the-world' 시간을 줄이는 것이다.
+- 기본적으로 JVM의 메모리는 총 5가지 영역(class, stack, heap, native method, PC)으로 나뉘는데, GC는 힙 메모리만 다룬다.
+{: style="font-size: 80%;"}
+  
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/gc.png" height="70%" alt=""> {% endraw %}
 
+### GC가 일어나는 과정
+- 현재 열심히 사용중인 객체를 메모리에서 제거해버린다면, 프로그램이 정상적으로 실행되지 않을 것이다.
+- 때문에, GC를 위해서는 우선 메모리에 있는 객체가 현재 사용중인지 사용중이 아닌지를 구분할 수 있어야 한다.
+- JVM에서는 오래된 객체를 구분하기 위해 메모리를 여러 영역으로 나눈다.
+{: style="font-size: 80%;"}
+
+{% raw %} <img src="https://chohongjae.github.io/assets/img/20201213livestudyweek1/gc2.png" height="70%" alt=""> {% endraw %}
+
+- 처음 생성된 객체는 Young Generation 영역의 일부인 Eden 영역에 위치하게된다.
+- 그리고 Minor GC가 발생하게 되면, 사용하지 않는 다시말하면 다른 곳에서 참조되지 않는 객체는 메모리에서 제거된다.
+- Eden 영역에서 살아남은 객체는 Young Generation 영역의 또다른 일부인 Survivor 영역으로 이동하게된다. 
+- Survivor 영역은 Survivor1 영역과 Survivor2 영역으로 구성되어 있는데, 
+  Minor GC가 발생할 때마다 Survivor1 영역에서 Survivor2 영역으로 또는 Survivor2 영역에서 Survivor1 영역으로 객체가 이동하게되며, 
+  이 과정에서 더이상 참조되지 않는 객체는 메모리에서 제거된다.
+- Minor GC가 발생하는 동안 Survivor1, Survivor2 영역을 오가며 살아남은 객체들은 최종적으로 Old Generation 영역으로 옮겨지며,
+Old Generation 영역에 있다가 미사용된다고 식별되는 객체들은 Full GC를 통해 메모리에서 제거된다.
+{: style="font-size: 80%;"}
+
+### Young Generation 영역에서 오래동안 살아남은 객체는 Old Generation 영역으로 옮겨지는데, 오래되었다는 기준은 무엇일까?
+>오래되었다고 하는 기준은 Young Generation 영역에서 Minor GC 가 발생하는 동안 얼마나 오래 살아남았는지로 판단한다. 
+각 객체는 Minor GC에서 살아남은 횟수를 기록하는 age bit 를 가지고 있으며, Minor GC가 발생할 때마다 age bit 값은 1씩 증가 하게되며, 
+age bit 값이 MaxTenuringThreshold 라는 설정값을 초과하게 되는 경우 Old Generation 영역을 객체가 이동 되는 것이다. 
+또는 Age bit가 MaxTenuringThreshold 초과하기 전이라도 Survivor 영역의 메모리가 부족할 경우에는 미리 Old Generation 으로 객체가 옮겨질 수도 있다.
+{: style="font-size: 80%;"}
+
+
+> JDK9부터 기본 가비지 수집기는 G1GC(가비지 우선 가비지 수집기)이고, 실험적 기능으로 stop-the-world 시간을 줄이기 위해 ZGC를 사용할 수 있다.
+{: style="font-size: 80%;"}
 
 ### 4-1. JNI(Java Native Interface)
 - 자바 애플리케이션에서 C, C++, 어셈블리로 작성된 Native 키워드를 사용한 함수를 사용할 수 있는 방법 제공
