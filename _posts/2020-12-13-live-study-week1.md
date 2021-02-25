@@ -208,6 +208,13 @@ last_modified_at: 2020-12-13T22:00:00+09:00
 - Minor GC가 발생하는 동안 Survivor1, Survivor2 영역을 오가며 살아남은 객체들은 최종적으로 Old Generation 영역으로 옮겨지며,
 Old Generation 영역에 있다가 미사용된다고 식별되는 객체들은 Full GC를 통해 메모리에서 제거된다.
 {: style="font-size: 80%;"}
+  
+> JDK 8부터 Permanent Heap 영역이 제거되었다.
+대신 Metaspace 영역이 추가되었다.
+Perm은 JVM에 의해 크기가 강제되던 영역이다.
+Metaspace는 Native memory 영역으로, OS가 자동으로 크기를 조절한다.
+옵션으로 Metaspace의 크기를 줄일 수도 있다.
+{: style="font-size: 80%;"}
 
 ### Young Generation 영역에서 오래동안 살아남은 객체는 Old Generation 영역으로 옮겨지는데, 오래되었다는 기준은 무엇일까?
 >오래되었다고 하는 기준은 Young Generation 영역에서 Minor GC 가 발생하는 동안 얼마나 오래 살아남았는지로 판단한다. 
