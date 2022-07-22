@@ -560,3 +560,4 @@ public class ThreadTest {
 ### 참조
 - [https://javagoal.com/](https://javagoal.com/)
 - [https://www.geeksforgeeks.org/method-block-synchronization-java/?ref=lbp](https://www.geeksforgeeks.org/method-block-synchronization-java/?ref=lbp)
+- [https://www.scaler.com/topics/multithreading-in-java/](https://www.scaler.com/topics/multithreading-in-java/)
